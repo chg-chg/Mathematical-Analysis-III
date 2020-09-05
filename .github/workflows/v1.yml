@@ -14,7 +14,7 @@ jobs:
         with:
           fetch-depth: 1
           ref: v1
-      - uses: SDCS-MOOC/LaTeXMakeAll
+      - uses: SDCS-MOOC/LaTeXMakeAll@latest
         with:
           root_dir: "."
           file_glob: "**/main.tex"
