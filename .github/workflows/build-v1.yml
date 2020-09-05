@@ -3,7 +3,8 @@ name: build-v1
 on:
   push:
     branches:
-      - v1
+      - 'master'
+      - 'v1'
       
 jobs:
   build:
