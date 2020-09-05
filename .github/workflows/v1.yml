@@ -1,0 +1,24 @@
+name: v1
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+          ref: v1
+      - uses: SDCS-MOOC/LaTeXMakeAll@v0.1
+        with:
+          root_dir: "."
+          file_glob: "**/main.tex"
+      - uses: actions/upload-artifact@v2
+        with:
+          name: "Slide"
+          path: "**/*-slide.pdf"
+      - uses: actions/upload-artifact@v2
+        with:
+          name: "Handout"
+          path: "**/*-handout.pdf"
