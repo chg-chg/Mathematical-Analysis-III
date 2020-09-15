@@ -2,9 +2,13 @@ name: v1
 
 on:
   push:
+    branches: v1
     paths-ignore:
       - '**.md'
       - .gitignore
+  pull_request:
+    branches: v1
+  workflow_dispatch:
 
 jobs:
   build:
