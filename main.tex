@@ -1,0 +1,283 @@
+%!TEX TS-program=xelatex
+\documentclass[xetex]{beamer}
+% 将上面这一行修改成下面这个样子，可以创建适合于发布的版本，这去除了所有的动画
+%\documentclass[xetex, handout]{beamer}
+
+% 规范注意：
+
+% 使用正确的主题（beamer主题、文字字体）
+% 使用正确的title信息（title、subtitle、author、date）
+% 合理使用frame 和 standout frame
+% 块（block、exampleblock、alertblock）以及文字段落内部的\alert的使用
+% 使用图片需要使用\begin{figure}...\end{figure}并附带\caption和\label信息
+% 使用enumerate和itemize组织你的点
+% 使用section给你的幻灯片分部分
+% 公式，文字段落内嵌公式和单独的公式块的使用
+% \DeclareMathOperator的使用，以及学会在网上查找你不知道怎么输入的数学符号
+% 动画的使用
+% 讲课录制使用什么版本的文档；对外发布使用什么版本的文档（handout）
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\DeclareMathOperator{\argmax}{argmax}
+
+\usetheme[block=fill]{metropolis}
+
+\setmathfont{XITS Math}
+
+\title{复合函数与隐函数微分法}
+\author{数学分析MOOC小组 \and 邱奕乔}
+\date{}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\begin{frame}
+    \frametitle{复合函数的偏导数}
+
+    我们先来认识复合函数的偏导数的定义\\
+    对于函数$ z=f(x,y)\quad x=x(u,v)\quad y=y(u,v) $\\\pause
+    现在要求z关于u,v的偏导数$\frac{\partial z}{\partial u}\quad \frac{\partial z}{\partial v}$\\\pause
+    由链式法则$$ \frac{\partial z}{\partial u}=\frac{\partial z}{\partial x}\frac{\partial x}{\partial u}+
+    \frac{\partial z}{\partial y}\frac{\partial y}{\partial u}
+    \quad \frac{\partial z}{\partial v}=\frac{\partial z}{\partial x}\frac{\partial x}{\partial v}+
+    \frac{\partial z}{\partial y}\frac{\partial y}{\partial v} $$\\\pause
+    证明的过程见课本P195页\\
+    下面我们来做一道题\\
+    知道复合函数的二阶以上偏导数是怎么求出来的\\\pause
+
+\end{frame}
+
+\begin{frame}
+\frametitle{复合函数的偏导数}
+	P209 1.6)\\
+	求函数$f$的所有二阶偏导数\\
+	$$u=f(x+y,xy,\frac{x}{y})$$\\
+	设$s=x+y\quad v=xy\quad w=\frac{x}{y}$\\
+	则$u=f(s,v,w)\quad s=s(x,y)\quad v=v(x,y)\quad w=w(x,y)$\\
+	为了方便起见，我们记
+	$\frac{\partial u}{\partial s}=f_1$\quad 
+	$\frac{\partial u}{\partial v}=f_2$
+	\quad $\frac{\partial u}{\partial w}=f_3$\\ \pause
+	$\frac{\partial u}{\partial x}=
+	\frac{\partial u}{\partial s}\frac{\partial s}{\partial x}+
+	\frac{\partial u}{\partial v}\frac{\partial v}{\partial x}+
+	\frac{\partial u}{\partial w}\frac{\partial w}{\partial x}=f_1+yf_2+\frac{f_3}{y}$\\ \pause
+	$\frac{\partial u}{\partial y}=
+	\frac{\partial u}{\partial s}\frac{\partial s}{\partial y}+
+	\frac{\partial u}{\partial v}\frac{\partial v}{\partial y}+
+	\frac{\partial u}{\partial w}\frac{\partial w}{\partial y}=f_1+xf_2-\frac{x}{y^2}f_3$\\ \pause
+	接下来求高阶导数，注意$f_1=\frac{\partial f}{\partial s}(s,v,w)=f_1(s(x,y),v(x,y),w(x,y))$\\ \pause
+	因此对$\frac{\partial u}{\partial x}\quad \frac{\partial u}{\partial y}$再求导时\\
+	要注意各部分是否与自变量有函数关系\\
+	
+
+\end{frame}
+
+\begin{frame}
+\frametitle{复合函数的偏导数}
+
+同样为了方便,我们记\\
+$\frac{\partial^2 u}{\partial s^2}=f_{11}$\quad
+$\frac{\partial^2 u}{\partial s\partial v}=f_{12}$\quad
+$\frac{\partial^2 u}{\partial s\partial w}=f_{13}$\\
+$\frac{\partial^2 u}{\partial v^2}=f_{22}$\quad
+$\frac{\partial^2 u}{\partial v\partial w}=f_{23}$\quad
+$\frac{\partial^2 u}{\partial w^2}=f_{33}$\\ \pause
+下面回到本道题的二阶偏导数的求导过程\\
+	$\frac{\partial^2 u}{\partial x^2}=
+	\frac{\partial }{\partial x}(\frac{\partial u}{\partial s}\frac{\partial s}{\partial x})+
+	\frac{\partial }{\partial x}(\frac{\partial u}{\partial v}\frac{\partial v}{\partial x})+
+	\frac{\partial }{\partial x}(\frac{\partial u}{\partial w}\frac{\partial w}{\partial x})$\\ \pause
+	$=\frac{\partial }{\partial x}(\frac{\partial u}{\partial s})\frac{\partial s}{\partial x}+\frac{\partial^2 s}{\partial x^2}\frac{\partial u}{\partial s}+
+	\frac{\partial }{\partial x}(\frac{\partial u}{\partial v})\frac{\partial v}{\partial x}+\frac{\partial^2 v}{\partial x^2}\frac{\partial u}{\partial v}+
+	\frac{\partial }{\partial x}(\frac{\partial u}{\partial w})\frac{\partial w}{\partial x}+\frac{\partial^2 w}{\partial x^2}\frac{\partial u}{\partial w}
+	$\\ \pause
+	$=\frac{\partial f_1}{\partial x}\frac{\partial s}{\partial x}+\frac{\partial^2 s}{\partial x^2}f_1+
+	\frac{\partial f_2}{\partial x}\frac{\partial v}{\partial x}+\frac{\partial^2 v}{\partial x^2}f_2+
+	\frac{\partial f_3}{\partial x}\frac{\partial w}{\partial x}+\frac{\partial^2 w}{\partial x^2}f_3$\\ \pause
+	$=(f_{11}\frac{\partial s}{\partial x}+f_{12}\frac{\partial v}{\partial x}+f_{13}\frac{\partial w}{\partial x})\frac{\partial s}{\partial x}+\frac{\partial^2 s}{\partial x^2}f_1$\\
+	\quad$+(f_{12}\frac{\partial s}{\partial x}+f_{22}\frac{\partial v}{\partial x}+f_{23}\frac{\partial w}{\partial x})\frac{\partial v}{\partial x}+\frac{\partial^2 v}{\partial x^2}f_2$\\
+	\quad$+(f_{13}\frac{\partial s}{\partial x}+f_{23}\frac{\partial v}{\partial x}+f_{33}\frac{\partial w}{\partial x})\frac{\partial w}{\partial x}+\frac{\partial^2 w}{\partial x^2}f_3$\\ \pause
+	$=(f_{11}+yf_{22}+\frac{1}{y}f_{33})+y(f_{12}+yf_{22}+\frac{1}{y}f_{23})$\\
+	\quad$+\frac{1}{y}(f_{11}+yf_{22}+\frac{1}{y}f_{13})$\\
+	到了这一步\quad 答案已经出来了，整理即可\\
+\end{frame}
+
+\begin{frame}
+\frametitle{复合函数的偏导数}
+	同样的,对于$\frac{\partial^2 u}{\partial x\partial y}$\\
+		$\frac{\partial^2 u}{\partial x\partial y}=
+	\frac{\partial }{\partial y}(\frac{\partial u}{\partial s}\frac{\partial s}{\partial x})+
+	\frac{\partial }{\partial y}(\frac{\partial u}{\partial v}\frac{\partial v}{\partial x})+
+	\frac{\partial }{\partial y}(\frac{\partial u}{\partial w}\frac{\partial w}{\partial x})$\\ \pause
+	$=\frac{\partial f_1}{\partial y}\frac{\partial s}{\partial x}+\frac{\partial^2 s}{\partial x\partial y}f_1+
+	\frac{\partial f_2}{\partial y}\frac{\partial v}{\partial x}+\frac{\partial^2 v}{\partial x\partial y}f_2+
+	\frac{\partial f_3}{\partial y}\frac{\partial w}{\partial x}+\frac{\partial^2 w}{\partial x\partial y}f_3$\\ \pause
+	$=(f_{11}\frac{\partial s}{\partial y}+f_{12}\frac{\partial v}{\partial y}+f_{13}\frac{\partial w}{\partial y})\frac{\partial s}{\partial x}+\frac{\partial^2 s}{\partial x\partial y}f_1$\\
+	\quad$+(f_{12}\frac{\partial s}{\partial y}+f_{22}\frac{\partial v}{\partial y}+f_{23}\frac{\partial w}{\partial y})\frac{\partial v}{\partial x}+\frac{\partial^2 v}{\partial x\partial y}f_2$\\
+	\quad$+(f_{13}\frac{\partial s}{\partial y}+f_{23}\frac{\partial v}{\partial y}+f_{33}\frac{\partial w}{\partial y})\frac{\partial w}{\partial x}+\frac{\partial^2 w}{\partial x\partial y}f_3$\\ \pause
+	$=(f_{11}+xf_{22}-\frac{x}{y^2}f_{33})+x(f_{12}+xf_{22}-\frac{x}{y^2}f_{23})$\\
+	\quad$-\frac{x}{y^2}(f_{11}+xf_{22}-\frac{x}{y^2}f_{13})$\\
+	到了这一步\quad 答案已经出来了，整理即可\\
+	$\frac{\partial^2 u}{\partial y^2}$的解法与上面两个类似，就不再展示了\\
+	这类题型的关键在于理清楚变量关系，正确运用链式法则，不要漏掉对某些变量的求导，计算过程要耐心\\
+\end{frame}
+
+\begin{frame}
+\frametitle{隐函数的偏导数}
+	\begin{enumerate}
+		\item 	很多时候，函数$z=f(x,y)$并不能表示成一个显式的形式\\
+		例如$y-siny=x$不能表示为$y=y(x)$的形式\\
+		因此，对于这类函数，我们叫它们为隐函数\\
+		由方程$F(x,y,z)=0$可以确定隐函数$z=z(x,y)$\\ \pause
+		\item   我们虽然不能求出$z=z(x,y)$的表达式\\
+		却可以用变量$x,y,z$表达出$\frac{\partial z}{\partial x},\frac{\partial z}{\partial y}$\\ \pause
+		\item   关于函数$z$是否是从$(x,y)$域到$z$域的一个映射\\
+		也就是隐函数的存在性，我们会在下一章进行讲解\\
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{隐函数的偏导数}
+	由方程$F(x,y,z)=0$\\
+	确定函数$z=z(x,y)$的偏导数和高阶偏导数\\ 
+	注意，在这里$z$是关于$x,y$的函数，求导时记得链式法则\\ \pause
+	设$u=F(x,y,z)$,则$\frac{\partial u}{\partial x}=F_x+F_z\frac{\partial z}{\partial x}$\quad $\frac{\partial u}{\partial y}=F_x+F_z\frac{\partial z}{\partial y}$\\ \pause
+	又因为$u=0$\quad 所以$F_x+F_z\frac{\partial z}{\partial x}=0$\quad $F_x+F_z\frac{\partial z}{\partial y}=0$\\ \pause
+	即$\frac{\partial z}{\partial x}=-\frac{F_x}{F_z}$\quad$\frac{\partial z}{\partial y}=-\frac{F_y}{F_z}$\\ \pause
+	求二阶偏导时，同前面一样\\
+	也要注意这里的$F_x,F_y,F_z$都是关于$x,y,z$的函数\\
+	由于这个方程比较简单，没有复合\\
+	关于求复合隐函数二阶偏导的演示，我在下面的例题中演示\\
+\end{frame}
+
+\begin{frame}
+	\frametitle{复合隐函数的高阶偏导数}
+	P211 15.\\
+	$u=x^2+y^2+z^2$\\
+	$z=f(x,y)$是由方程$x^3+y^3+z^3=3xyz$确定的隐函数\\
+	求$\frac{\partial u}{\partial x}$\quad $\frac{\partial^2 u}{\partial x^2}$\\
+	根据$x^3+y^3+z^3yz$\quad 方程两边对$x$求导\\
+	可以得到$3x^2+3z^2\frac{\partial z}{\partial x}=3yz+3xy\frac{\partial z}{\partial x}$\\ \pause
+	即$(z^2-xy)\frac{\partial z}{\partial x}=yz-x^2$\quad $\frac{\partial z}{\partial x}=\frac{yz-x^2}{z^2-xy}$\\
+	又$\frac{\partial u}{\partial x}=2x+2z\frac{\partial z}{\partial x}=2x+2z\frac{yz-x^2}{z^2-xy}$\\ \pause
+	所以$\frac{\partial^2 u}{\partial x^2}=\frac{\partial }{\partial x}(2x+2z\frac{\partial z}{\partial x})=2(1+z\frac{\partial^2 z}{\partial x^2}+(\frac{\partial z}{\partial x})^2)$\\ \pause
+	为了求$\frac{\partial^2 z}{\partial x^2}$
+	\begin{enumerate}
+	\item 我们可以直接对$\frac{\partial z}{\partial x}$求导\\ \pause
+	\item 也可以对方程$3x^2+3z^2\frac{\partial z}{\partial x}=3yz+3xy\frac{\partial z}{\partial x}$再对$x$求一次导\\ \pause
+	\end{enumerate}
+	具体用哪种方法，看情况决定，你觉得哪个好算，就用哪个\\
+	
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{复合隐函数的高阶偏导数}
+	在这里，我们对方程$3x^2+3z^2\frac{\partial z}{\partial x}=3yz+3xy\frac{\partial z}{\partial x}$再对$x$求一次导\\ \pause
+	也就是$6x+6z\frac{\partial z}{\partial x}+3z^2\frac{\partial^2 z}{\partial x^2}=3y\frac{\partial z}{\partial x}+3y(\frac{\partial z}{\partial x}+x\frac{\partial^2 z}{\partial x^2})$\\ \pause
+	$(z^2-xy)\frac{\partial^2 z}{\partial x^2}=2(y-z)\frac{\partial z}{\partial x}-2x$\\ \pause
+	$\frac{\partial^2 z}{\partial x^2}=\frac{2(y-z)(yz-x^2)}{(z^2-xy)^2}-\frac{2x}{z^2-xy}$\\ \pause
+	$\frac{\partial^2 u}{\partial x^2}=2+2z(\frac{2(y-z)(yz-x^2)}{(z^2-xy)^2}-\frac{2x}{z^2-xy})+2(\frac{yz-x^2}{z^2-xy})^2$\\ \pause
+	到这一步\quad 答案已经出来了\\
+\end{frame}
+
+\begin{frame}
+	\frametitle{隐函数组的偏导数和高阶偏导数}
+	考虑方程组$\left\{ 
+		\begin{matrix}
+			F(x,y,u,v)=0\\
+			G(x,y,u,v)=0
+		\end{matrix}
+	\right
+	$\\关于它是怎么确定隐函数组$u=u(x,y)$\quad$v=v(x,y)$\\
+	我们会在第17章第二节进行讲解\\
+	下面先带来一道例题\\
+	P211 16.3)\\
+	考虑方程组$\left\{ 
+	\begin{matrix}
+	u=xyz\quad(1)\\
+	x^2+y^2+z^2=1\quad(2)
+	\end{matrix}
+	\right$\quad 求$\frac{\partial^2 u}{\partial x^2},\frac{\partial^2 u}{\partial y^2},\frac{\partial^2 u}{\partial x\partial y}$\\
+	这里确定了隐函数组$u=u(x,y),z=z(x,y)$\\
+	(2)两边分别对$x,y$求导,得$2x+2z\frac{\partial z}{\partial x}=0\quad(3)\quad 2y+2z\frac{\partial z}{\partial y}=0\quad(4)$\\ \pause
+	也就是$\frac{\partial z}{\partial x}=-\frac{x}{z},\frac{\partial z}{\partial y}=-\frac{y}{z}$\\ \pause
+	(1)两边分别对$x,y$求导,得$\frac{\partial u}{\partial x}=yz+xy\frac{\partial z}{\partial x},\frac{\partial u}{\partial y}=xz+xy\frac{\partial z}{\partial y}$\\ \pause
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{隐函数组的偏导数和高阶偏导数}
+	接下来求高阶导\\
+	$\frac{\partial^2 u}{\partial x^2}=y\frac{\partial z}{\partial x}+y(\frac{\partial z}{\partial x})^2+xy\frac{\partial^2 z}{\partial x^2}$\\ \pause
+	$\frac{\partial^2 u}{\partial y^2}=x\frac{\partial z}{\partial y}+x(\frac{\partial z}{\partial y})^2+xy\frac{\partial^2 z}{\partial y^2}$\\ \pause
+	$\frac{\partial^2 u}{\partial x\partial y}=\frac{\partial }{\partial y}(\frac{\partial u}{\partial x})=y\frac{\partial z}{\partial y}+z+x(\frac{\partial z}{\partial x}+y\frac{\partial^2 z}{\partial x\partial y})$\\ \pause
+	其中对(3)和(4)再分别对$x,y$求导可以得到关于$z$的二阶偏导\\ \pause
+	即$1+(\frac{\partial z}{\partial x})^2+z\frac{\partial^2 z}{\partial x^2}=0,1+(\frac{\partial z}{\partial y})^2+z\frac{\partial^2 z}{\partial y^2}=0,\frac{\partial }{\partial y}(x+z\frac{\partial z}{\partial x})=0$\\ \pause
+	所以$\frac{\partial^2 z}{\partial x^2}=-\frac{1}{z}(1+\frac{x^2}{z^2})$\quad$\frac{\partial^2 z}{\partial y^2}=-\frac{1}{z}(1+\frac{y^2}{z^2})$\\ \pause
+	$\frac{\partial z}{\partial x}\frac{\partial z}{\partial y}+z\frac{\partial^2 z}{\partial x\partial y}=0$\quad
+	也就是$\frac{\partial^2 z}{\partial x\partial y}=-\frac{xy}{z^3}$\\ \pause
+	把这些二阶偏导数代回去就可以得到$\frac{\partial^2 u}{\partial x^2},\frac{\partial^2 u}{\partial y^2},\frac{\partial^2 u}{\partial x\partial y}$\\
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{全微分与高阶全微分}
+	有了偏导数，自然就会有全微分的定义\\
+	考虑函数$u=F(x,y,z)$\\
+	因变量$u$的变化量由3个自变量$x,y,z$决定\\
+	具体的一阶全微分的公式如下
+	$$du=\frac{\partial F}{\partial x}dx+\frac{\partial F}{\partial y}dy+\frac{\partial F}{\partial z}dz$$
+	一阶全微分,是函数在各个自变量方向上的偏导数与各个方向自变量变化量的乘积的累加,也是因变量变化量的线性近似\\
+	
+\end{frame}
+
+\begin{frame}
+\frametitle{高阶全微分}
+	下面我们考虑2阶全微分,由于二阶偏导数开始出现混合偏导，因此也要考虑混合的项\\
+	$ d^2u=\frac{\partial^2 F}{\partial x^2}dx^2+\frac{\partial^2 F}{\partial y^2}dy^2+\frac{\partial^2 F}{\partial z^2}dz^2$ $+2\frac{\partial^2 F}{\partial x\partial y}dxdy+2\frac{\partial^2 F}{\partial y\partial z}dydz+2\frac{\partial^2 F}{\partial x\partial z}dzdx$\\ \pause
+	混合微分在$x$对$z$和$z$对$x$求微分时均出现，因此系数是2\\
+	注意由于$dx^2=(dx)^2$\\ \pause
+	$$d^2u=(dx,dy,dz)\left[
+	\begin{matrix}
+		\frac{\partial^2 F}{\partial x^2} & \frac{\partial^2 F}{\partial x\partial y} & \frac{\partial^2 F}{\partial x\partial z}\\
+		\frac{\partial^2 F}{\partial x\partial y} & \frac{\partial^2 F}{\partial y^2} & \frac{\partial^2 F}{\partial y\partial z}\\
+		\frac{\partial^2 F}{\partial x\partial z} & \frac{\partial^2 F}{\partial y\partial z} & \frac{\partial^2 F}{\partial z^2}\\
+	\end{matrix}
+	\right](dx,dy,dz)^T $$\\ \pause
+
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{高阶全微分}
+		记矩阵$$\nabla^2F = \left[
+	\begin{matrix}
+	\frac{\partial^2 F}{\partial x^2} & \frac{\partial^2 F}{\partial x\partial y} & \frac{\partial^2 F}{\partial x\partial z}\\
+	\frac{\partial^2 F}{\partial x\partial y} & \frac{\partial^2 F}{\partial y^2} & \frac{\partial^2 F}{\partial y\partial z}\\
+	\frac{\partial^2 F}{\partial x\partial z} & \frac{\partial^2 F}{\partial y\partial z} & \frac{\partial^2 F}{\partial z^2}\\
+	\end{matrix}
+	\right] $$\\
+	$\nabla^2 F$为函数$F(x,y,z)$的海森矩阵\\ \quad
+	这个矩阵的性质很重要，它在某点$(x_0,y_0,z_0)$处的取值，决定了函数$F(x,y,z)$在$(x_0,y_0,z_0)$处的极值和凹凸性\\
+	具体的分析我们会在第18章讲解\\
+	
+\end{frame}
+
+\begin{frame}[standout]
+	谢谢
+\end{frame}
+
+\end{document}
