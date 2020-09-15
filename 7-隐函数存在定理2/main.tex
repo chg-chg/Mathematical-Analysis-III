@@ -1,0 +1,222 @@
+%!TEX TS-program=xelatex
+\documentclass[xetex]{beamer}
+% 将上面这一行修改成下面这个样子，可以创建适合于发布的版本，这去除了所有的动画
+%\documentclass[xetex, handout]{beamer}
+
+% 规范注意：
+
+% 使用正确的主题（beamer主题、文字字体）
+% 使用正确的title信息（title、subtitle、author、date）
+% 合理使用frame 和 standout frame
+% 块（block、exampleblock、alertblock）以及文字段落内部的\alert的使用
+% 使用图片需要使用\begin{figure}...\end{figure}并附带\caption和\label信息
+% 使用enumerate和itemize组织你的点
+% 使用section给你的幻灯片分部分
+% 公式，文字段落内嵌公式和单独的公式块的使用
+% \DeclareMathOperator的使用，以及学会在网上查找你不知道怎么输入的数学符号
+% 动画的使用
+% 讲课录制使用什么版本的文档；对外发布使用什么版本的文档（handout）
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\DeclareMathOperator{\argmax}{argmax}
+
+\usetheme[block=fill]{metropolis}
+
+\setmathfont{XITS Math}
+
+\title{隐函数存在定理II}
+\author{数学分析MOOC小组}
+\date{}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\begin{frame}
+    \frametitle{方程组确定的隐函数组}
+    方程组$
+    \begin{matrix}
+    F(x,y,u,v)=0\\
+    G(x,y,u,v)=0
+    \end{matrix}
+	$\\
+    在什么情况下，能确定两个变量为另外两个变量的函数的隐函数组呢？不妨以确定$u=u(x,y)\quad v=v(x,y)$为例\\
+    下面是方程组的隐函数组存在定理的内容：
+    对于一个点$P_0=(x_0,y_0,u_0,v_0)$\\
+    \begin{enumerate}
+    	\item $F(P_0)=0$\quad $G(P_0)=0$
+    	\item $P_0$附近的邻域内\\
+    	$F(x,y,u,v),G(x,y,u,v)$的各个一阶偏导数连续\\
+    	\item 与单个方程不同的情形是，这里需要满足$J|_{P_0}=\frac{\partial (F,G)}{\partial (u,v)}|_{P_0}=
+    	\left|\begin{matrix}
+    		F_u&F_v\\
+    		G_u&G_v
+    	\end{matrix}\right|
+    	\not =0$\\
+    	
+    \end{enumerate}
+    
+\end{frame}
+
+\begin{frame}
+\frametitle{方程组确定的隐函数组}
+	为了方便记忆，大家可以记住\\
+	被确定为隐函数(组)因变量的变量,例如这里的$u,v$\\
+	原函数$F,G$的偏导构成的Jacobi行列式\\
+	在$P_0$点处必须非0 \\ \pause
+	然后我们来证明如何从这个条件得到隐函数存在\\
+	由于课本已经有完整的过程，我这里只是再提炼一下大概的流程\\
+	由条件3\quad$\left|\begin{matrix}
+		F_u&F_v\\
+		G_u&G_v
+	\end{matrix}\right|$在$P_0$处$\not =0$\quad $F_u|_{P_0}$和$F_v|_{P_0}$至少有一个$\not =0$\\ \pause
+	不妨设$F_v|_{P_0}\not =0$,由单个方程的隐函数存在定理\\
+	在点$P_0$的邻域附近，方程$F(x,y,u,v)=0$唯一确定隐函数$v=\phi(x,y,u)$\\ \pause
+	$v_0=\phi(x_0,y_0,u_0),F(x,y,u,\phi(x,y,u))\overline{=}0$\\
+	记$\psi(x,y,u)=G(x,y,u,\phi(x,y,u))$\\
+	方程组$
+	\begin{matrix}
+		\psi(x,y,u)=G(x,y,u,\phi(x,y,u))\quad (1)\\
+		F(x,y,u,\phi(x,y,u))=0	\quad (2)
+	\end{matrix}
+	$
+\end{frame}
+
+\begin{frame}
+\frametitle{方程组确定的隐函数组}
+	对(1)式左右两边对u求偏导\\
+	$\psi_u=G_u+G_v\phi_u$\quad $F_u+F_v\phi_u=0$ \\ \pause
+	所以$\psi_u=G_u-G_v\frac{F_u}{F_v}=\frac{G_uF_v-G_vF_u}{F_v}=-\frac{1}{F_v}\left|\begin{matrix}
+		F_u&F_v\\
+		G_u&G_v
+	\end{matrix}\right|=-\frac{1}{F_v}\frac{\partial (F,G)}{\partial (u,v)}$\\ \pause
+	因为$F_v(P_0)\not=0,\frac{\partial (F,G)}{\partial (u,v)}$在$P_0$处$\not=0$\\
+	所以$\psi_u(x_0,y_0,u_0)\not=0$\\ \pause
+	所以$\psi(x,y,u)=G(x,y,u,\phi(x,y,u))=0$满足隐函数存在定理\\
+	因此在$P_0$的邻域内，$\psi(x,y,u)=0$唯一确定隐函数$u=u(x,y)$\\
+	所以$v=\phi(x,y,u)=\phi(x,y,u(x,y))=v(x,y)$\\
+	综上所述,方程组$F(x,y,u,v)=0,G(x,y,u,v)=0$\\
+	在给定的条件1,2,3下\quad 可以唯一确定隐函数组$u=u(x,y),v=v(x,y)$\\
+	
+	
+\end{frame}
+
+
+\begin{frame}
+\frametitle{方程组确定的隐函数组}
+	对于隐函数组$u=u(x,y),v=v(x,y)$的偏导数$\frac{\partial u}{\partial x},\frac{\partial u}{\partial y},\frac{\partial v}{\partial x},\frac{\partial v}{\partial y}$\\
+	通过对方程组$F(x,y,u,v)=0,G(x,y,u,v)=0$
+	\\两边对$x,y$求导得到,也就是\\
+	$F_x+F_u\frac{\partial u}{\partial x}+F_v\frac{\partial v}{\partial x}=0$\quad $F_y+F_u\frac{\partial u}{\partial y}+F_v\frac{\partial v}{\partial y}=0$\\
+	$G_x+G_u\frac{\partial u}{\partial x}+G_v\frac{\partial v}{\partial x}=0$\quad $G_y+G_u\frac{\partial u}{\partial y}+G_v\frac{\partial v}{\partial y}=0$\\
+	所以$$\left[
+		\begin{matrix}
+			F_u & F_v\\
+			G_u & G_v
+		\end{matrix}
+	\right]\left(
+		\begin{matrix}
+			\frac{\partial u}{\partial x}\\
+			\frac{\partial v}{\partial x}\\
+		\end{matrix}
+	\right)=-\left(
+		\begin{matrix}
+			F_x\\
+			G_x
+		\end{matrix}
+	\right)\quad
+	\left[
+	\begin{matrix}
+	F_u & F_v\\
+	G_u & G_v
+	\end{matrix}
+	\right]\left(
+	\begin{matrix}
+	\frac{\partial u}{\partial y}\\
+	\frac{\partial v}{\partial y}\\
+	\end{matrix}
+	\right)=-\left(
+	\begin{matrix}
+	F_y\\
+	G_y
+	\end{matrix}
+	\right)
+	$$
+	答案见课本的P233页，下面我们带来有关例题的讲解\\
+
+	
+\end{frame}
+
+
+\begin{frame}
+\frametitle{方程组确定的隐函数组}
+	P239 6.
+	设$$
+	\begin{matrix}
+		u=f(x,y,z,t)\\
+		g(y,z,t)=0\\
+		h(z,t)=0
+	\end{matrix}
+	$$\\
+	在什么条件下,$u$是$x,y$的函数,求$\frac{\partial u}{\partial x},\frac{\partial u}{\partial y}$\\ \pause
+	我们观察这个方程组，可以看到有5个变量$x,y,z,t,u$\\ 
+	不妨设方程$h(z,t)=0$，可以确定$z$是$t$的隐函数，设为$z=\phi(t)$\\ \pause
+	对应的导数满足$\frac{dz}{dt}=-\frac{h_t}{h_z}$\\ \pause
+	考虑方程$g(y,z,t)=0$，也就是$g(y,\phi(t),t)=0$\\
+	可以确定$t$是$y$的隐函数，设为$t=\psi(y)$\\
+	方程2对$y$求导得到，$g_y+g_z\frac{dz}{dt}\frac{dt}{dy}+g_t\frac{dt}{dy}=0$\\ \pause
+	也就是$(\frac{g_t h_z-g_z h_t}{h_z})\frac{dt}{dy}=-g_y$ \quad
+	$\frac{dt}{dy}=\frac{g_y h_z}{g_z h_t-g_t h_z}=\frac{g_y h_z}{
+	\left|
+		\begin{matrix}
+			g_z & g_t\\
+			h_z & h_t
+		\end{matrix}
+	\right|
+	}=\frac{g_y h_z}{\frac{\partial (g,h)}{\partial (z,t)}}$\\
+
+	
+\end{frame}
+
+\begin{frame}
+\frametitle{方程组确定的隐函数组}
+	把这两个隐函数代回$u=f(x,y,z,t)$\\
+	可以得到$u=f(x,y,\phi(\psi(y)),\psi(y))$\\ \pause
+	所以此时$u$是关于$x,y$的函数\\
+	$\frac{\partial u}{\partial y}=f_x$\\
+	$\frac{\partial u}{\partial y}=f_y+f_z\frac{dz}{dt}\frac{dt}{dy}+f_t\frac{dt}{dy}=f_y-f_z\frac{h_t}{h_z}\frac{g_y h_z}{\frac{\partial (g,h)}{\partial (z,t)}}+f_t\frac{g_y h_z}{\frac{\partial (g,h)}{\partial (z,t)}}$\\ \pause
+	$\quad = f_y+\frac{g_y h_z}{\frac{\partial (g,h)}{\partial (z,t)}}\frac{f_t h_z-f_z h_t}{h_z}=f_y-\frac{g_y
+			\left|
+		\begin{matrix}
+		f_z & f_t\\
+		h_z & h_t
+		\end{matrix}
+		\right|
+	}{\frac{\partial (g,h)}{\partial (z,t)}}=f_y-g_y\frac{\frac{\partial (f,h)}{\partial (z,t)}}{\frac{\partial (g,h)}{\partial (z,t)}}$\\ \pause
+	由于要满足两个隐函数存在定理\\
+	因此满足条件为:
+	\begin{enumerate}
+		\item
+			$f,g,h$三个函数均连续并有一阶连续偏导数
+		\item
+			存在点$P(x_0,y_0,z_0,t_0,u_0)$\quad 使得方程组在点P处成立\\
+		\item
+			$h_z(z_0,t_0)\not =0\quad \frac{\partial (g,h)}{\partial (z,t)}(y_0,z_0,t_0)\not =0$\\
+			
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[standout]
+	谢谢
+\end{frame}
+
+\end{document}

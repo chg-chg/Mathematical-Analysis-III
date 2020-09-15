@@ -1,0 +1,114 @@
+%!TEX TS-program=xelatex
+\documentclass[xetex]{beamer}
+% 将上面这一行修改成下面这个样子，可以创建适合于发布的版本，这去除了所有的动画
+%\documentclass[xetex, handout]{beamer}
+
+% 规范注意：
+
+% 使用正确的主题（beamer主题、文字字体）
+% 使用正确的title信息（title、subtitle、author、date）
+% 合理使用frame 和 standout frame
+% 块（block、exampleblock、alertblock）以及文字段落内部的\alert的使用
+% 使用图片需要使用\begin{figure}...\end{figure}并附带\caption和\label信息
+% 使用enumerate和itemize组织你的点
+% 使用section给你的幻灯片分部分
+% 公式，文字段落内嵌公式和单独的公式块的使用
+% \DeclareMathOperator的使用，以及学会在网上查找你不知道怎么输入的数学符号
+% 动画的使用
+% 讲课录制使用什么版本的文档；对外发布使用什么版本的文档（handout）
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\DeclareMathOperator{\argmax}{argmax}
+
+\usetheme[block=fill]{metropolis}
+
+\setmathfont{XITS Math}
+
+\title{隐函数存在定理I}
+\author{数学分析MOOC小组}
+\date{}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\begin{frame}
+    \frametitle{单个方程确定的隐函数}
+	由方程$F(x,y)=0$，在某些条件成立的情况下，可以确定从$x$域到$y$域的映射，也就是隐函数$y=f(x)$\\
+	具体的证明过程课本已经说的比较清楚了\\
+	这里先为大家分析一下\\
+	隐函数存在定理的各个条件是怎么得到从从$x$域到$y$域的映射的\\
+	由于课本已经有了一元的情形，我们就拿多元来举例子吧\\
+	对于方程$F(x_1,x_2,...,x_n,y)=0$,设点$P_0=(\dot x_1,\dot x_2,...,\dot x_n,\dot y)$\\
+	函数$F$满足\\
+	\begin{enumerate}
+		\item
+		$F$连续
+		\item 
+		所有的一阶偏导在点$P_0$附近的邻域$U(P_0,\delta)$内连续。
+		\item
+		$F(P_0)=0$
+		\item
+		$F_y(P_0)\not = 0$
+	\end{enumerate}
+
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{单个方程确定的隐函数}
+	参考课本一元情况的证明，我们不妨设$F_y(P_0)>0$\\ \pause
+	由$F_y$的保号性\quad$\exists b>0 \quad \forall y \in [\dot y-b,\dot y+b],F_y(\dot x_1,\dot x_2,...,\dot x_n,y)>0$\\ \pause
+	也就是对于固定的$\vec x=(x_1,x_2,...,x_n)$\\
+	$F(x_1,x_2,...,x_n,y)$关于$y$在区间$[\dot y-b,\dot y+b]$上单调递增\\ \pause
+	又因为$F(P_0)=F(\dot x_1,\dot x_2,...,\dot x_n,\dot y)=0$\\
+	结合单调性可以判断$F(\dot x_1,\dot x_2,...,\dot x_n,\dot y-b)<0\quad F(\dot x_1,\dot x_2,...,\dot x_n,\dot y+b)>0$\\ \pause
+	下面，我们固定$y=\dot y-b,y=\dot y+b$\\
+	$g(x_1,x_2,...,x_n)=F(x_1,x_2,...,x_n,\dot y-b)$\\
+	$h(x_1,x_2,...,x_n)=F(x_1,x_2,...,x_n,\dot y+b)$\\
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{单个方程确定的隐函数}
+	由前面可以确定$g(\dot x_1,\dot x_n,...,\dot x_n)<0\quad h(\dot x_1,\dot x_n,...,\dot x_n)>0$\\
+	由连续函数的保号性，存在$\delta_1>0,\delta_2>0$\\
+	使得当$max\{|x_i-\dot x_i|<\delta_1\},i \in \{1,2,...,n\}$时,$g(x_1,x_2,...,x_n)<0$\\
+	同理$max\{|x_i-\dot x_i|<\delta_2\},i \in \{1,2,...,n\}$时,$h(x_1,x_2,...,x_n)>0$\\ \pause
+	所以取$\delta=min\{\delta_1,\delta_2 \}$\\
+	当$(x_1,x_2,...,x_n)$满足$max\{|x_i-\dot x_i|<\delta\}$,有$F(x_1,x_2,...,x_n,\dot y-b)<0\quad F(x_1,x_2,...,x_n,\dot y+b)>0$\\ \pause
+	由介值定理，对于每一个在方形邻域内的$(\overline{x_1},\overline{x_2},...\overline{x_n})$\\
+	存在对应的$\overline{y}$\quad 使得$F(\overline{x_1},\overline{x_2},...\overline{x_n},\overline{y})=0$\\ \pause
+	因此也就确定了一个隐函数$y=f(x_1,x_2,...,x_n)$\\
+\end{frame}
+
+\begin{frame}
+
+\frametitle{单个方程确定的隐函数}
+	下面我们来做一道例题\\
+	P230 5.\\
+	方程$xy+zlny+e^{xz}=1$在$P_0(0,1,1)$的某邻域内能否确定出一个变量是另外两个变量的函数\\ \pause
+	这里由于我们不知道哪个变量是另外两个变量的函数。在直接求导时将三个变量都视为自变量，不要用链式法则\\
+	设$F(x,y,z)=xy+zlny+e^{xz}-1=0$\\ \pause
+	$F_x=y+ze^{xz}$,$F_y=x+\frac{z}{y}$,$F_z=lny+xe^{xz}$\\
+	代入$P_0(0,1,1)$得$F_x(P_0)=2,F_y(P_0)=1,F_z(P_0)=0$\\ \pause
+	且$F,F_x,F_y,F_z$在$(0,1,1)$的小邻域都连续\\
+	因此由隐函数存在定理\\
+	可以确定隐函数$x=x(y,z)\quad y=y(x,z)$\\ \pause
+	单个方程的情形比较简单，主要是为了方程组确定隐函数做铺垫
+\end{frame}
+
+\begin{frame}[standout]
+	谢谢
+\end{frame}
+
+\end{document}
