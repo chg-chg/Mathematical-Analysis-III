@@ -1,0 +1,236 @@
+%!TEX TS-program=xelatex
+\documentclass[xetex]{beamer}
+% 将上面这一行修改成下面这个样子，可以创建适合于发布的版本，这去除了所有的动画
+%\documentclass[xetex, handout]{beamer}
+
+% 规范注意：
+
+% 使用正确的主题（beamer主题、文字字体）
+% 使用正确的title信息（title、subtitle、author、date）
+% 合理使用frame 和 standout frame
+% 块（block、exampleblock、alertblock）以及文字段落内部的\alert的使用
+% 使用图片需要使用\begin{figure}...\end{figure}并附带\caption和\label信息
+% 使用enumerate和itemize组织你的点
+% 使用section给你的幻灯片分部分
+% 公式，文字段落内嵌公式和单独的公式块的使用
+% \DeclareMathOperator的使用，以及学会在网上查找你不知道怎么输入的数学符号
+% 动画的使用
+% 讲课录制使用什么版本的文档；对外发布使用什么版本的文档（handout）
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\DeclareMathOperator{\argmax}{argmax}
+
+\usetheme[block=fill]{metropolis}
+
+\setmathfont{XITS Math}
+
+\title{极值与条件极值I}
+\author{数学分析MOOC小组}
+\date{}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\begin{frame}
+	\frametitle{多元函数极值点的定义}
+	函数$f(x,y)$在点$P_0(x_0,y_0)$的邻域$U(P_0,\delta)$内有定义\\
+	且满足$\forall (x,y) \in U(P_0,\delta),f(x,y)\leq f(x_0,y_0)$\\
+	则点$P_0(x_0,y_0)$为函数$f(x,y)$的一个极大值点\\ \pause
+	若是$\forall (x,y) \in U(P_0,\delta),f(x,y)\geq f(x_0,y_0)$\\
+	则点$P_0(x_0,y_0)$为函数$f(x,y)$的一个极小值点\\ \pause
+	以极小值为例，在极小值点附近的点的函数的取值都比极小值大\\
+	可以想像成一个碗状的图形，极小值点就是碗底\\ 
+\end{frame}
+
+\begin{frame}
+	\frametitle{多元函数极值点的性质}
+	极值点的必要条件:\\
+	在连续函数$f$的极值点处,函数$f$的一阶偏导数若存在，则必为0\\ 
+	对于一些偏导数不存在的点，则要用偏导数的定义式去算偏导数在这个点的值\\ \pause
+	极值点的充分条件:\\
+	若函数$f$的二阶偏导数在$P_0(x_0,y_0)$处均存在且连续\\ \pause
+	考虑函数$f$的二阶偏导数组成的海森矩阵在点$P_0$处的取值$$\nabla^2f=
+	\left[
+		\begin{matrix}
+			f_{xx} & f_{xy}\\
+			f_{xy} & f_{yy}
+		\end{matrix}
+	\right]$$ \pause
+	\begin{enumerate}
+		\item$\nabla^2f$半正定时，点$P_0$为极小值点\\
+		\item$\nabla^2f$半负定时，点$P_0$为极大值点\\
+		\item$\nabla^2f$不定时，点$P_0$是鞍点，不是极值点\\
+		\item$|\nabla^2f|=0$时，必须另行讨论\\
+	\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{多元函数极值点的性质}
+	由于课本已经用泰勒展开和较为严密的证明了定理，实际上其使用的是展开到二阶的泰勒公式，对于余项直接将三阶以上等高阶无穷小舍去，余项的值实际上由二次项决定\\
+	我们下面从另外一个角度来看待这个定理,直接展开到三阶\\ \pause
+	考虑函数$f(\vec x)$的稳定点(驻点)$\quad\vec x_0,\vec x,\vec x_1\in R^n$\\
+	其邻域内有点$\vec x_1=\vec x_0+\Delta \vec x$\\ \pause
+	$f(\vec x_1)=f(\vec x_0+\Delta \vec x)=f(\vec x_0)+\Sigma_{i=1}^n\frac{\partial f}{\partial x_i}(x_0,y_0)(\Delta \vec x)_i+\Sigma_{i=1}^n\Sigma_{j=1}^n\frac{\partial^2 f}{\partial x_i\partial x_j}(x_0,y_0)(\Delta \vec x)_i(\Delta \vec x)_j+R_3(\vec x_0+\theta\Delta \vec x)$\\
+	\quad$=f(\vec x_0)+\nabla f(\vec x_0)^T\Delta \vec x+\Delta \vec x^T\nabla^2 f(\vec x_0)\Delta \vec x+R_3(\vec x_0+\theta\Delta \vec x)$\\ \pause
+	所以，现在就能看出海森矩阵$\nabla^2 f$的性质对极值的判定影响了\\
+	由于$\Delta \vec x$是任意的,注意$\nabla f(\vec x_0)=\vec 0$\\ \pause
+
+	
+	
+\end{frame}
+
+\begin{frame}
+
+	\frametitle{多元函数极值点的性质}
+	\begin{enumerate}
+		\item	$\nabla^2 f$半正定，那么$f(\vec x_1)\geq f(\vec x_0)$成立，$f(\vec x)$有极小值点$x_0$\\
+		\item	$\nabla^2 f$半负定，那么$f(\vec x_1)\geq f(\vec x_0)$成立，$f(\vec x)$有极大值点$x_0$\\ \pause
+		\item 	如果$\nabla^2 f$不定，这时$P_0$不是极值点\\
+		对海森矩阵$\nabla^2 f$做对角阵分解\\ \pause
+		$\nabla^2 f(\vec x_0)=PDP^T$\\
+		$\Delta \vec x^T\nabla^2 f(\vec x_0)\Delta \vec x=\Delta \vec x^T PDP^T\Delta \vec x$\\ \pause
+		由于$P$是单位正交对角阵，设$\Delta \vec y=P^T\Delta  \vec x$\\
+		且$\Delta  \vec x$左乘矩阵$P$相当于对$\Delta  \vec x$做了旋转变换，模长不变\\ \pause
+		所以$\Delta \vec x^T\nabla^2 f(\vec x_0)\Delta \vec x=\Delta \vec y^T D\Delta \vec y=\Sigma_{i=1}^nD_{ii}(\Delta \vec y)^2_i$\\
+		又因为$\nabla^2 f(\vec x_0)$不定，所以其特征值有正有负\\ \pause
+		也就是说存在向量$\Delta \vec x_1$\quad 使得$\Delta \vec x_1^T\nabla^2 f(\vec x_0)\Delta \vec x_1<0$\\ 
+		存在向量$\Delta \vec x_2$\quad 使得$\Delta \vec x_2^T\nabla^2 f(\vec x_0)\Delta \vec x_2>0$\\ \pause
+		所以在点$P_0$的附近，存在比它函数值大的点，也存在比它函数值小的点，课本的马鞍面就是一个例子\\
+		
+	\end{enumerate}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{多元函数极值点的性质}
+	
+	当$\Delta\vec x=dx$时,我们再观看这个式子，就可以发现后面那两项变成了一阶全微分$df$和二阶全微分$d^2f$\\ \pause
+	泰勒展开实际上是多元函数的各阶全微分的和，对函数在自变量微小改变下对应的函数改变量的多项式近似\\ \pause
+	\begin{enumerate}
+		\item 目标点$\vec x_0$处的函数梯度$\nabla f(\vec x_0)\not=0$时\\ 
+		$\exists \Delta \vec x,\nabla f(\vec x_0)^T\Delta \vec x>0$,此时$f(\vec x_0+\Delta \vec x)>f(\vec x_0)$\\ \pause
+		\item 目标点$\vec x_0$处的函数梯度$\nabla f(\vec x_0)=0$时\\
+		$f(\vec x_0+\Delta \vec x)$与$f(\vec x_0)$的大小关系就由$\nabla^2 f(\vec x_0)$决定\\ \pause
+		\item 目标点$\vec x_0$处的海森矩阵$|\nabla^2 f(\vec x_0)|=0$时\\
+		$f(\vec x_0+\Delta \vec x)$与$f(\vec x_0)$的大小关系由更高阶的全微分决定\\ \pause
+		可以定义3维全微分$d^3 f=\Sigma_{i=1}^n\Sigma_{j=1}^n\Sigma_{k=1}^n\frac{\partial^3 f(\vec x_0)}{\partial x_i\partial x_j\partial x_k}dx_idx_jdx_k$\\ \pause
+		三维偏导数组成的张量(高维矩阵)就会决定函数在这里是否为极值点,依此类推\\ \pause
+		
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\frametitle{多元函数极值相关例题}
+	P249 1.4)
+	求$f(x,y)=e^{2x}(x+y^2+2y)$的极值点\\
+	一阶偏导数:\\
+	$f_x=2e^{2x}(x+y^2+2y)+e^{2x}=e^{2x}(2x+2y^2+4y+1)$\\
+	$f_y=e^{2x}(2+2y)$\\
+	当$f_x=0$且$f_y=0$时，$y=-1$\\
+	所以$2x+2-4+1=0,x=\frac{1}{2}$\\ \pause
+	二阶偏导数:\\
+	$f_{xx}=e^{2x}(4x+4y^2+8y+4),f_{yy}=2e^{2x},f_{xy}=2e^{2x}(2+2y)$\\
+	所以此时$f_{xx}=2e,f_{xy}=0,f_{yy}=2e$\\ \pause
+	海森矩阵的行列式为$
+	\left|
+		\begin{matrix}
+			f_{xx}&f_{xy}\\
+			f_{xy}&f_{yy}
+		\end{matrix}
+	\right|
+	=4e^2>0$\\
+	所以$(\frac{1}{2},-1)$是函数$f$的极小值点
+	
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{多元函数极值与隐函数微分的综合例题}
+	P249 7.2)\\
+	求下列隐函数$z=z(x,y)$的极值\\
+	$z^2+xyz-x^2-xy^2-9=0$\\ \pause
+	使用隐函数求导法则\\
+	设$F(x,y,z)=z^2+xyz-x^2-xy^2-9$\\
+	$F_x=yz-2x-y^2,F_y=xz-2xy,F_z=2z+xy$\\ \pause
+	$\frac{\partial z}{\partial x}=-\frac{F_x}{F_z}=\frac{2x+y^2-yz}{2z+xy},\frac{\partial z}{\partial y}=-\frac{F_y}{F_z}=\frac{2xy-xz}{2z+xy}$\\ \pause
+	对原方程两次微分以求隐函数的二阶偏导数:\\
+	$2z\frac{\partial z}{\partial x}+yz+xy\frac{\partial z}{\partial x}-2x-y^2=0$\\$ 
+	2z\frac{\partial z}{\partial y}+xz+xy\frac{\partial z}{\partial y}-2xy=0$\\ \pause
+	$2(\frac{\partial z}{\partial x})^2+2z\frac{\partial^2 z}{\partial x^2}+y\frac{\partial z}{\partial x}+y(\frac{\partial z}{\partial x}+x\frac{\partial^2 z}{\partial x^2})-2=0\quad(1)$\\\pause
+	$2(\frac{\partial z}{\partial y})^2+2z\frac{\partial^2 z}{\partial y^2}+x\frac{\partial z}{\partial y}+x(\frac{\partial z}{\partial y}+y\frac{\partial^2 z}{\partial y^2})-2x=0\quad(2)$\\\pause
+	$2\frac{\partial z}{\partial x}\frac{\partial z}{\partial y}+2z\frac{\partial^2 z}{\partial x\partial y}+z+x\frac{\partial z}{\partial x}+y(\frac{\partial z}{\partial y}+x\frac{\partial^2 z}{\partial x\partial y})-2y=0\quad(3)$\\
+
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{多元函数极值与隐函数微分的综合例题}
+	式子比较复杂，另外一种直接求导的方法更为复杂\\
+	不过注意到，我们这时已经有了极值点的必要条件\\\pause
+	也就是一阶偏导等于0，直接代入上式，不需要整理出完整的隐函数二阶偏导数的形式\\\pause
+	此时极值点处的隐函数二阶偏导数的方程(1)(2)(3)转化为\\\pause
+	$2z\frac{\partial^2 z}{\partial x^2}+xy\frac{\partial^2 z}{\partial x^2}-2=0,\frac{\partial^2 z}{\partial x^2}=\frac{2}{2z+xy}$\\\pause
+	$2z\frac{\partial^2 z}{\partial y^2}+xy\frac{\partial^2 z}{\partial y^2}-2x=0,\frac{\partial^2 z}{\partial y^2}=\frac{2x}{2z+xy}$\\\pause
+	$2z\frac{\partial^2 z}{\partial x\partial y}+xy\frac{\partial^2 z}{\partial x\partial y}-2y=0,\frac{\partial^2 z}{\partial x\partial y}=\frac{2y}{2z+xy}$\\\pause
+	并且极值点$(x,y,z)$满足$z^2+xyz-x^2-xy^2-9=0,yz-2x-y^2=0,xz-2xy=0,2z+xy\not=0$\\
+	解得稳定点为$(0,0,3),(0,0,-3),(0,3,3),(0,-3,-3),(1,\sqrt{2},2\sqrt{2}),(1,-\sqrt{2},-2\sqrt{2})$\pause
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{多元函数极值与隐函数微分的综合例题}
+	
+	计算相应的二阶偏导数及海森矩阵可以得到\\
+	\begin{enumerate}
+		\item $(0,0,3),(0,0,-3),(0,3,3),(0,-3,-3)$处均不是极值点\\\pause
+		\item $(1,\sqrt{2},2\sqrt{2})$处取极小值$2\sqrt{2}$\\\pause
+		\item $(1,-\sqrt{2},-2\sqrt{2})$处取极大值$-2\sqrt{2}$
+	\end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+	\frametitle{多元函数极值与隐函数微分的综合例题}
+		实际上，关于隐函数的极值问题有一个二级结论如下:\\\pause
+	对于方程$F(x,y,z)=0$与其确定的隐函数$z=z(x,y)$\\
+	函数$F$有稳定点(驻点)$P_0(x_0,y_0,z_0)$\\\pause
+	若$\left|
+	\begin{matrix}
+	F_{xx}(P_0)&F_{xy}(P_0)\\
+	F_{xy}(P_0)&F_{yy}(P_0)
+	\end{matrix}
+	\right|>0$则$P_0$为极值点\\\pause
+	\begin{enumerate}
+		\item $\frac{F_{xx}(P_0)}{F_z(P_0)}<0$,则$P_0$为极小值点\pause
+		\item $\frac{F_{xx}(P_0)}{F_z(P_0)}>0$,则$P_0$为极大值点\pause
+	\end{enumerate}
+	若$\left|
+	\begin{matrix}
+	F_{xx}(P_0)&F_{xy}(P_0)\\
+	F_{xy}(P_0)&F_{yy}(P_0)
+	\end{matrix}
+	\right|<0$则$P_0$为鞍点\\\pause
+	若$\left|
+	\begin{matrix}
+	F_{xx}(P_0)&F_{xy}(P_0)\\
+	F_{xy}(P_0)&F_{yy}(P_0)
+	\end{matrix}
+	\right|=0$则需另外讨论\\\pause
+\end{frame}
+
+\begin{frame}[standout]
+	谢谢
+\end{frame}
+
+\end{document}
