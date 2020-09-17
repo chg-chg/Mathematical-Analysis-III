@@ -1,0 +1,143 @@
+%!TEX TS-program=xelatex
+\documentclass[xetex]{beamer}
+% 将上面这一行修改成下面这个样子，可以创建适合于发布的版本，这去除了所有的动画
+% \documentclass[xetex, handout]{beamer}
+
+% 规范注意：
+
+% 使用正确的主题（beamer主题、文字字体）
+% 使用正确的title信息（title、subtitle、author、date）
+% 合理使用frame 和 standout frame
+% 块（block、exampleblock、alertblock）以及文字段落内部的\alert的使用
+% 使用图片需要使用\begin{figure}...\end{figure}并附带\caption和\label信息
+% 使用enumerate和itemize组织你的点
+% 使用section给你的幻灯片分部分
+% 公式，文字段落内嵌公式和单独的公式块的使用
+% \DeclareMathOperator的使用，以及学会在网上查找你不知道怎么输入的数学符号
+% 动画的使用
+% 讲课录制使用什么版本的文档；对外发布使用什么版本的文档（handout）
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\DeclareMathOperator{\argmax}{argmax}
+
+\usetheme[block=fill]{metropolis}
+
+\setmathfont{XITS Math}
+
+\title{偏导数与全微分}
+\subtitle{偏导数与全微分的概念}
+\author{数学分析MOOC小组 }
+\date{}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\begin{frame}
+    \frametitle{概览}
+	
+    \begin{enumerate}
+        \item 知识回顾
+			\begin{enumerate}
+           \item 偏导数
+			\item 全微分
+			\item 全微分与偏导数的关系
+			\item 高级偏导数
+        	\end{enumerate}
+        \item 习题讲解
+        
+    \end{enumerate}
+
+
+\end{frame}
+
+\section{知识回顾}
+\begin{frame}
+    \frametitle{偏导数} 
+  
+设函数$f(x,y)$在点$(x_{0},y_{0})$的某邻域内有定义，若极限$\displaystyle\lim_{\Delta x \to 0}\frac{f(x_{0}+\Delta x,y_{0})-f(x_{0},y_{0})}{\Delta x}$存在，则称此极限值为函数$f$在点$(x_{0},y_{0})$关于$x$的偏导数或偏微商，记为$\displaystyle \left. \frac{\partial f}{\partial x} \right|_{(x_0, y_0)}$或$f_{x}(x_{0},y_{0})$；
+	
+	
+\end{frame}
+
+\begin{frame}
+    \frametitle{全微分} 
+ 	 设函数$z=f(x,y)$在点$P_{0}(x_{0},y_{0})$的某邻域内有定义。若函数$f$在$P_{0}$点的全改变量$\Delta z$可表为：$\Delta z =f(x_{0}+\Delta x,y_{0}+\Delta y)-f(x_{0},y_{0})$$=A\Delta x +B\Delta y + o(\rho)$\\其中$A,B$是与$\Delta x,\Delta y$无关（可与$P_{0}$有关）的常数，$\rho = \sqrt{(\Delta x)^2+(\Delta y)^2}$，$o(\rho)$是比$\rho$更高阶的无穷小量，则称函数在$P_{0}$点可微。并称$A\Delta x+B\Delta y$为函数$f$在点$P_{0}$的全微分，记为\\$\displaystyle \left. \mathrm{d}x\right|_{P_{0}}=A\Delta x+B\Delta y$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{全微分与偏导数的关系} 
+    \begin{enumerate}
+ 	\item[(1)]\textbf{定理 16.1}\qquad 若$f(x,y)$在点$P_{0}(x_{0},y_{0})$\textbf{可微}$\Rightarrow f(x,y)$在点$P_{0}$\textbf{连续}
+ 	\item[(2)]\textbf{定理 16.2}\qquad 若$z=f(x,y)$在点$P_{0}(x_{0},y_{0})$\textbf{可微}$\Rightarrow f_{x}(x_{0},y_{0})$和$f_{y}(x_{0},y_{0})$都存在（\textbf{偏导数存在}），且$f(x,y)$在点$P_{0}$的全微分等于$f_{x}(x_{0},y_{0})\Delta x+f_{y}(x_{0},y_{0})\Delta y$
+ 	\item[(3)]\textbf{定理 16.3}\qquad 若函数$f(x,y)$在点$P_{0}(x_{0},y_{0})$的某邻域存在偏导数，且$f_{x}(x,y),f_{y}(x,y)$在$P_{0}$点连续（\textbf{偏导数连续}）$\Rightarrow f(x,y)$在点$P_{0}(x_{0},y_{0})$\textbf{可微}
+ 	\item[(4)]\textbf{其它结论}\qquad 函数在一点的两个\textbf{偏导数存在}并不能推出函数在该点\textbf{连续}，因此更不能推出在该点\textbf{可微}
+    \end{enumerate}
+  
+\end{frame}
+
+\begin{frame}
+    \frametitle{高级偏导数} 
+  \begin{enumerate}
+\item 高级偏导数的求法很简单，按顺序求即可；但要注意求一阶偏导数时使用的定义法也是可以用在求高级偏导数的过程中的（比如例8）
+\item \textbf{定理 16.4}\qquad 若$f_{xy}(x,y)$和$f_{yx}(x,y)$在点$(x,y)$都连续，则$f_{xy}(x,y)=f_{yx}(x,y)$
+    \end{enumerate}
+	
+\end{frame}
+
+\section{习题讲解}
+\begin{frame}
+    \frametitle{习题2} 
+   2.设
+$$
+f(x,y)=
+\left
+\{\begin{array}{cc} 
+		y\sin \frac{1}{x^2+y^2}, & x^2+y^2 \ne 0\\ 
+		0, &  x^2+y^2 = 0
+\end{array}\right.
+$$ 
+考察函数在(0,0)点的偏导数\\
+解:\\
+$f_{x}(0,0)=\displaystyle\lim_{\Delta x \to 0}\frac{f(0+\Delta x,0)-f(0,0)}{\Delta x}=\displaystyle\lim_{\Delta x \to 0} \frac{0-0}{\Delta x}=0$;\\
+$f_{y}(0,0)=\displaystyle\lim_{\Delta y \to 0}\frac{f(0,0+\Delta y)-f(0,0)}{\Delta y}=\displaystyle\lim_{\Delta y \to 0} \frac{\Delta y\sin \frac{1}{\Delta y^2}}{\Delta y}=\displaystyle\lim_{\Delta y \to 0} \sin \frac{1}{\Delta y^2}$不存在，所以$f_{y}(0,0)$不存在。\\
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题7} 
+   7.$$
+f(x,y)=
+\left
+\{\begin{array}{cc} 
+		\frac{x^2 y}{x^2+y^2}, & x^2+y^2 \ne 0\\ 
+		0, &  x^2+y^2 = 0
+\end{array}\right.
+$$ 
+证明函数$f(x,y)$在(0,0)点连续且偏导数存在，但在此点不可微。
+	\\解：令$x=r\cos\theta$，$y= r\sin\theta$，则$\displaystyle\lim_{x \to 0 \atop y \to 0}f(x,y)=\displaystyle\lim_{r \to 0}\frac{r^3 \cos \theta^3 \sin \theta}{r^2}=0$；\\
+偏导数同上面题的求法，易得均为0；\\
+若函数$f$在原点可微，则按照定义，应有$f(\Delta x,\Delta y)-f(0,0)-[f_{x}(0,0)\Delta x+f_{y}(0,0)\Delta y]=\frac{\Delta x^2 \Delta y}{\Delta x^2 + \Delta y^2}$是比$\rho$更高阶的无穷小量，$\rho = \sqrt{(\Delta x)^2+(\Delta y)^2}$\\
+而$\displaystyle\lim_{\rho \to 0}\frac{\frac{\Delta x^2 \Delta y}{\Delta x^2 + \Delta y^2}}{ \sqrt{(\Delta x)^2+(\Delta y)^2}}=\displaystyle\lim_{\rho \to 0}\frac{\Delta x^2 \Delta y}{(\Delta x^2 + \Delta y^2)^\frac {3}{2}}$；
+ 
+\end{frame}
+\begin{frame} 
+\frametitle{习题7}
+令$\Delta y = k \Delta x$，则有原式=$\displaystyle\lim_{\Delta x \to 0}\frac{k \Delta x^3}{(1+k^2)^\frac{3}{2}\Delta x^3}=\frac{k}{(1+k^2)^\frac{3}{2}}$，所以$f(x,y)$在原点不可微。\\这个题说明即使函数在某个点连续且偏导数存在，也不一定在这点可微。
+\end{frame}
+\begin{frame}[standout]
+谢谢大家！
+\end{frame}
+
+ 
+
+\end{document}

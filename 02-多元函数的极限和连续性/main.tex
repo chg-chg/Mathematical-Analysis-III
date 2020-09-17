@@ -1,0 +1,120 @@
+%!TEX TS-program=xelatex
+\documentclass[xetex]{beamer}
+% 将上面这一行修改成下面这个样子，可以创建适合于发布的版本，这去除了所有的动画
+% \documentclass[xetex, handout]{beamer}
+
+% 规范注意：
+
+% 使用正确的主题（beamer主题、文字字体）
+% 使用正确的title信息（title、subtitle、author、date）
+% 合理使用frame 和 standout frame
+% 块（block、exampleblock、alertblock）以及文字段落内部的\alert的使用
+% 使用图片需要使用\begin{figure}...\end{figure}并附带\caption和\label信息
+% 使用enumerate和itemize组织你的点
+% 使用section给你的幻灯片分部分
+% 公式，文字段落内嵌公式和单独的公式块的使用
+% \DeclareMathOperator的使用，以及学会在网上查找你不知道怎么输入的数学符号
+% 动画的使用
+% 讲课录制使用什么版本的文档；对外发布使用什么版本的文档（handout）
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\DeclareMathOperator{\argmax}{argmax}
+
+\usetheme[block=fill]{metropolis}
+
+\setmathfont{XITS Math}
+
+\title{多元函数的极限与连续性}
+\subtitle{多元函数的极限与连续性}
+\author{数学分析MOOC小组 }
+\date{}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\begin{frame}
+    \frametitle{概览}
+	
+    \begin{enumerate}
+        \item 知识回顾
+			\begin{enumerate}
+           \item 全面极限
+			\item 累次极限
+			\item 连续性 
+        	\end{enumerate}
+        \item 习题讲解
+        
+    \end{enumerate}
+
+
+\end{frame}
+
+\section{知识回顾}
+\begin{frame}
+    \frametitle{全面极限} 
+  设$f$在$P_{0}(x_{0},y_{0})$的某个空心邻域有定义，$A$是一个确定的数。如果对于$\forall \epsilon >0,\,\exists \delta>0$使得当$0<r(P,P_{0})<\delta$时，有$|f(P)-A|<\epsilon$，那么称$A$是二元函数$f$当$P\to P_{0}$时的极限，记为\\ $\displaystyle\lim_{x \to x_{0}\atop y \to y_{0}}f(x,y)=A$，或$\displaystyle\lim_{P \to P_{0}}f(P)=A$
+\\解题中，下面表述\alert{更为方便}：\\
+$\displaystyle\lim_{x \to x_{0}\atop y \to y_{0}}f(x,y)=A$,\\当且仅当对于$\forall\epsilon >0,\,\exists \delta>0$，只要$0<\sqrt{(x-x_{0})^2 + (y-y_{0})^2}<\delta$,就有$|f(P)-A|<\epsilon$
+	
+	
+\end{frame}
+
+\begin{frame}
+    \frametitle{累次极限} 
+   
+若$\displaystyle\lim_{x \to x_{0}}\lim_{y \to y_{0}}f(x,y)$或$\displaystyle\lim_{y \to y_{0}}\lim_{x \to x_{0}}f(x,y)$存在，则称它们为累次极限。
+	 
+\end{frame}
+ 
+
+\begin{frame}
+    \frametitle{连续性}  
+\textbf{二元函数的连续性}\qquad 设函数$f$在点$P_{0}$的某个邻域有定义，若$\displaystyle\lim_{P \to P_{0}}f(P)=f(P_{0})$，则称$f(P)$在点$P_{0}$连续。\\
+\textbf{有界闭区域上连续函数的性质}：
+
+    \begin{enumerate}
+	\item[(1)]\textbf{有界性定理}\qquad 若$f(P)$在有界闭集$E$上连续，则$f(P)$在$E$上有界。
+\item[(2)]\textbf{最值定理}\qquad 若$f(P)$在有界闭集$E$上连续，则$f(P)$在$E$上达到最大值和最小值。
+\item[(3)]\textbf{一致连续性定理}\qquad 若$f(P)$在有界闭集$E$上连续，则$f(P)$在$E$上一致连续。
+\item[(4)]\textbf{介值定理}\qquad $\mbox{若}f(P)\mbox{在区域}G\mbox{连续，}P_{1},P_{2}\in G$，$f(P_{1})<f(P_{2})$,则对于任意的$c:f(P_{1})<c<f(P_{2})$，存在$P_{0}\in G$，使得$f(P_{0})=c$。
+    \end{enumerate}
+\end{frame}
+
+\section{习题讲解}
+\begin{frame}
+    \frametitle{习题2.(5)}
+	 $\mbox{求}\displaystyle\lim_{x \to 0\atop y \to 0}x^2y^2\ln(x^2+y^2)$\\
+   $\mbox{解：}\displaystyle\lim_{x \to 0\atop y \to 0}x^2y^2\ln(x^2+y^2)=\displaystyle\lim_{x \to 0\atop y \to 0}\frac{x^2y^2}{x^2+y^2}*\displaystyle\lim_{x \to 0\atop y \to 0}(x^2+y^2)\ln(x^2+y^2)$\\
+$\mbox{一方面}0\le \frac{x^2y^2}{x^2+y^2}\le\frac{x^2y^2}{2|xy|}=\frac{|xy|}{2}\mbox{，而}\displaystyle\lim_{x \to 0\atop y \to 0}\frac{|xy|}{2}= 0$,由夹逼定理知$ \displaystyle\lim_{x \to 0\atop y \to 0}\frac{x^2y^2}{x^2+y^2}=0$；\\
+$\mbox{另一方面，}\displaystyle\lim_{x \to 0\atop y \to 0}(x^2+y^2)\ln(x^2+y^2)=\displaystyle\lim_{t\to 0}t\ln t=0\mbox{,所以原式=0}$
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题8} 
+   8.若$f(x,y)$在某区域$G$内对变量$x$连续，对变量$y$满足利普希茨条件，即对任意$(x,y')\in G$和$(x,y'')\in G$，有$|f(x,y')-f(x,y'')|\le L|y'-y''|$，其中$L$为常数，求证$f(x,y)$在$G$内连续。\\
+	解：对于$\forall (x_{0},y_{0})\in G$，由于$f(x,y)$在$G$内对$x$连续，则对于$\forall \epsilon >0,\exists \delta'>0$，当$(x,y_{0})\in G$，且$|x-x_{0}|<\delta'$时，有$|f(x,y_{0})-f(x_{0},y_{0})|<\frac{\epsilon}{2}$。另一方面，$f(x,y)$在$G$内对$y$满足利普希茨条件，则对于$\forall (x,y)\in G$和$(x,y_{0})\in G$，当$|y-y_{0}|<\frac{\epsilon}{2L}$时，有$|f(x,y)-f(x,y_{0})|\le L|y-y_{0}|<\frac{\epsilon}{2}$。\\
+取$\delta = \min\left\{\delta',\frac{\epsilon}{2L}\right\}$，则对于$\forall (x,y)\in G$，当$|x-x_{0}|<\delta$，且$|y-y_{0}|<\delta$时，有$|f(x,y)-f(x_{0},y_{0})|\le|f(x,y)-f(x,y_{0})|+|f(x,y_{0})-f(x_{0},y_{0})|<\epsilon$，即$f(x,y)$在$G$内连续。 
+\end{frame}
+\begin{frame}
+    \frametitle{习题8} 
+特别注意，这样的证法：\\$|f(x,y)-f(x_{0},y_{0})|\le|f(x,y)-f(x_{0},y)|+|f(x_{0},y)-f(x_{0},y_{0})|<\epsilon$是错误的，原因是二元函数$f(x,y)$在某区域$G$内对变量$x$连续是建立在固定$y$的基础上的。即用$f(x,y)$在$G$内对$x$连续的条件是无法说明对于$\forall \epsilon >0,\exists \delta'>0$，当$(x,y)\in G$，且$|x-x_{0}|<\delta'$时，有$|f(x,y)-f(x_{0},y)|<\frac{\epsilon}{2}$。（顺便说一下，这是一道18级计科的期中试题，一半的人使用了上述的错误证法）
+\end{frame}
+ 
+
+\begin{frame}[standout]
+谢谢大家！
+\end{frame}
+
+ 
+
+\end{document}
