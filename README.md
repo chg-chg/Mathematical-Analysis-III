@@ -9,6 +9,8 @@
 
 请按照[Meta](https://github.com/SDCS-MOOC/Meta)当中的贡献指引进行贡献。
 
+当前编译状态：![v1](https://github.com/SDCS-MOOC/Mathematical-Analysis-III/workflows/v1/badge.svg?branch=v1&event=push)
+
 ## 课程安排
 
 | 编号 | 章节 | 课程名 | 主要内容 |
