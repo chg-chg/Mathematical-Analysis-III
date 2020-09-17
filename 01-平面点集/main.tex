@@ -1,0 +1,140 @@
+%!TEX TS-program=xelatex
+\documentclass[xetex]{beamer}
+% 将上面这一行修改成下面这个样子，可以创建适合于发布的版本，这去除了所有的动画
+% \documentclass[xetex, handout]{beamer}
+
+% 规范注意：
+
+% 使用正确的主题（beamer主题、文字字体）
+% 使用正确的title信息（title、subtitle、author、date）
+% 合理使用frame 和 standout frame
+% 块（block、exampleblock、alertblock）以及文字段落内部的\alert的使用
+% 使用图片需要使用\begin{figure}...\end{figure}并附带\caption和\label信息
+% 使用enumerate和itemize组织你的点
+% 使用section给你的幻灯片分部分
+% 公式，文字段落内嵌公式和单独的公式块的使用
+% \DeclareMathOperator的使用，以及学会在网上查找你不知道怎么输入的数学符号
+% 动画的使用
+% 讲课录制使用什么版本的文档；对外发布使用什么版本的文档（handout）
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\DeclareMathOperator{\argmax}{argmax}
+
+\usetheme[block=fill]{metropolis}
+
+\setmathfont{XITS Math}
+
+\title{多元函数的极限与连续性}
+\subtitle{平面点集}
+\author{数学分析MOOC小组 }
+\date{}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\begin{frame}
+    \frametitle{概览}
+	
+    \begin{enumerate}
+        \item 知识回顾
+			\begin{enumerate}
+           \item 平面点集和邻域的表示
+			\item 点与点集的关系
+			\item 几种重要的平面点集
+			\item 其他知识
+        	\end{enumerate}
+        \item 习题讲解
+        
+    \end{enumerate}
+
+
+\end{frame}
+
+\section{知识回顾}
+\begin{frame}
+    \frametitle{平面点集和邻域的表示} 
+  
+平面上的点集$E$可以用集合表示成：\\$\qquad E=\{(x,y)\mid(x,y)\mbox{满足某性质}\}$\\ 
+$P_{0}(x_{0},y_{0})$的 $\delta$ 圆邻域可以表示为：\\$\qquad O(P_{0},\delta)= \{ (x,y)\mid(x-x_{0})^2+(y-y_{0})^2<\delta ^2\}$
+	
+	
+\end{frame}
+
+\begin{frame}
+    \frametitle{点与点集的关系} 
+  
+    \begin{enumerate}
+\item 若$\exists \delta >0$,使得$O(P_{0},\delta) \subset E$,则称$P_{0}$为$E$的内点
+\item 若$\exists \delta >0$,使得$O(P_{0},\delta) \cap E= \emptyset$,则称$P_{0}$为$E$的外点
+\item 若$\forall \delta >0$,使得$O(P_{0},\delta) \cap E\ne \emptyset$,且$O(P_{0},\delta) \backslash E \ne \emptyset$则称$P_{0}$为$E$的边界点
+\item 若$\forall \delta >0$,使得$O^* (P_{0},\delta) \cap E \ne \emptyset$,则称$P_{0}$为$E$的聚点
+	
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \frametitle{几种重要的平面点集} 
+    \begin{enumerate}
+ 	\item[(1)]\textbf{开集}\qquad 称平面点集$E$是开集，如果$E$的所有点都是内点。
+ 	\item[(2)]\textbf{闭集}\qquad 称平面点集$E$是闭集，如果$E$的所有聚点（如果有的话）属于$E$。
+ 	\item[(3)]\textbf{连通集}\qquad 称$E$是连通集，如果$E$的任意两点都能用完全含于$E$的有限条直线段组成的折线连接起来。
+ 	\item[(4)]\textbf{区域}\qquad 连通的开集称为开区域，或简称为区域。
+ 	\item[(5)]\textbf{闭区域}\qquad 区域连同它的边界点所组成的集合称为闭区域。
+    \end{enumerate}
+  
+\end{frame}
+
+\begin{frame}
+    \frametitle{其他知识} 
+  \begin{enumerate}
+\item 平面点列的极限较为简单
+\item 柯西收敛定理等并非重点掌握内容，同学们酌情掌握
+	
+    \end{enumerate}
+	
+\end{frame}
+
+\section{习题讲解}
+\begin{frame}
+    \frametitle{习题3.6} 
+   3.判别下列平面点集哪些是开集、闭集、有界集或区域，并分别指出它们的聚点：\\
+	(6)$E=\left\{(x,y)\mid y = \sin\frac{1}{x},x>0 \right\}$ 
+	\\解：\\聚点：$\left\{(x,y)\mid y = \sin\frac{1}{x},x>0 \mbox{或}x=0,|y|\le 1\right\}$\\
+所有$E$上的点都是边界点（都不是内点），所以$E$不是开集；并不是所有的$E$的聚点都属于$E$,所以$E$不是闭集，自然也不是区域；$x$没有范围限制，所以$E$不是有界集。
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题4} 
+   4.设$F$为闭集，$G$为开集，证明$F \,\backslash\, G$是闭集，$G \,\backslash\, F$是开集。
+	\\解：\\$R^2$为全集，记$F^c$和$G^c$分别为$F$和$G$的补集；$F \,\backslash\, G=F\cap G^c$，$G \, \backslash\, F=G\cap F^c$；
+	我们先证$F^c$为开集，$G^c$为闭集：\\
+	（1）$\, \forall P_{0} \in F^c$，则必有$P_{0}$是$F^c$的内点，即满足$\exists \delta >0$,使得$O(P_{0},\delta) \subset F^c$。（这是因为若$P_{0}$不是$F^c$的内点，则有$\forall \delta >0$,均使得$O(P_{0},\delta ) \not\subset F^c$,则$O(P_{0},\delta) \cap F \ne \emptyset$。又因为$P_{0}\not\in F$，所以$O^*(P_{0},\delta) \cap F \ne \emptyset$，即$P_{0}$是闭集$F$的聚点，则$P_{0}\in F$，矛盾。）所以$F^c$是开集。\\
+	（2）对于$\, \forall G^c$的聚点$P_{0}$，有$\forall \delta >0$,$O(P_{0},\delta) \cap G^c \ne \emptyset$,则$P_{0}\not\in G$（这是因为若$P_{0}\in G$，则$\exists \delta >0$,使得$O(P_{0},\delta) \subset G$,此时$O(P_{0},\delta) \cap G^c = \emptyset$，矛盾），所以$P_{0}\in G^c$,所以$G^c$是闭集。
+\\下证$F\cap G^c$是闭集，$G\cap F^c$是开集：
+	
+\end{frame}
+\begin{frame}
+    \frametitle{习题4} 
+下证$F\cap G^c$是闭集，$G\cap F^c$是开集：\\
+（3）记$E=F\cap G^c$。若$P_{0}$是$E$的聚点，则有$\forall \delta >0$,$O(P_{0},\delta) \cap E \ne \emptyset$,即一方面有$\forall \delta >0$,$O(P_{0},\delta) \cap F \ne \emptyset$,所以$P_{0}$是$F$的聚点，则$P_{0}\in$闭集$F$;同理，另一方面有$\forall \delta >0$,$O(P_{0},\delta) \cap G^c \ne \emptyset$,所以$P_{0}$是$G^c$的聚点，则$P_{0}\in$闭集$G^c$。所以$P_{0}\in F\cap G^c$，即$P_{0}\in E$，这便证明了$F\cap G^c$是闭集。\\
+（4）若$P_{0}\in G\cap F^c$，则一方面$P_{0}\in$开集$G$,所以$\exists\delta_1>0$,使得$O(P_{0},\delta_1) \subset G$;另一方面$P_{0}\in$开集$F^c$,所以$\exists\delta_2>0$,使得$O(P_{0},\delta_2) \subset F^c$;取$\delta=\min(\delta_1,\delta_2)$,则有$O(P_{0},\delta) \subset G\cap F^c$，即$P_{0}$是$G\cap F^c$的内点。这便证明了$G\cap F^c$是开集。
+\end{frame}
+ 
+
+\begin{frame}[standout]
+谢谢大家！
+\end{frame}
+
+ 
+
+\end{document}
