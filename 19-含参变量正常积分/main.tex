@@ -1,0 +1,238 @@
+%!TEX TS-program=xelatex
+\documentclass[xetex]{beamer}
+% 将上面这一行修改成下面这个样子，可以创建适合于发布的版本，这去除了所有的动画
+% \documentclass[xetex, handout]{beamer}
+
+% 规范注意：
+
+% 使用正确的主题（beamer主题、文字字体）
+% 使用正确的title信息（title、subtitle、author、date）
+% 合理使用frame 和 standout frame
+% 块（block、exampleblock、alertblock）以及文字段落内部的\alert的使用
+% 使用图片需要使用\begin{figure}...\end{figure}并附带\caption和\label信息
+% 使用enumerate和itemize组织你的点
+% 使用section给你的幻灯片分部分
+% 公式，文字段落内嵌公式和单独的公式块的使用
+% \DeclareMathOperator的使用，以及学会在网上查找你不知道怎么输入的数学符号
+% 动画的使用
+% 讲课录制使用什么版本的文档；对外发布使用什么版本的文档（handout）
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+%\usepackage{XITSMath}
+\usepackage{nopageno}
+
+\DeclareMathOperator{\argmax}{argmax}
+
+\usetheme[block=fill]{metropolis}
+%\setmainfont{XITS} 
+%\setmathfont{xits-math.otf}
+
+\setmainfont{XITS}
+[    Extension = .otf,
+   UprightFont = *-Regular,
+      BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+BoldItalicFont = *-BoldItalic,
+]
+\setmathfont{XITSMath-Regular}
+[    Extension = .otf,
+      BoldFont = XITSMath-Bold,
+]
+
+\title{含参变量的积分}
+\subtitle{含参变量的正常积分}
+\author{数学分析MOOC小组}
+\date{2020年8月20日}
+
+
+\begin{document}
+
+\frame{\maketitle}
+
+\begin{frame}
+    \frametitle{含参变量积分连续性}
+    \begin{block}{定理19.1}
+        设$f(x,y)$在矩形区域$[a,b]\times[c,d]$上连续，
+        则$I(x)=\int_{c}^d{f(x,y)dy}$在$x\in[a,b]$上连续
+    \end{block}
+    $\forall x \in [a,b] \Rightarrow \lim\limits_{x \to x_0}I(x)=I(x_0)$
+    即$\lim\limits_{x \to x_0}\int_{c}^d{f(x,y)dy}
+    =\int_{c}^d{f(x_0,y)dy}
+    =\int_{c}^d{\lim\limits_{x \to x_0}f(x,y)dy}$
+    
+    \alert{积分和极限运算可以交换顺序}
+    \begin{block}{例题}
+        $\lim\limits_{a \to 0}\int_{-1}^{1}{\sqrt{x^2+a^2}dx}$
+        
+        解：由于$\sqrt{x^2+a^2}$在区间$[-1,1]$上连续
+        $\newline\lim\limits_{a \to 0}\int_{-1}^{1}{\sqrt{x^2+a^2}dx}
+        =\int_{-1}^{1}{\lim\limits_{a \to 0}\sqrt{x^2+a^2}dx}
+        =\int_{-1}^{1}{\vert x \vert dx}=1$
+
+    \end{block}
+
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{积分下求导}
+    \begin{block}{定理19.2}
+        设$f(x,y)$和$f_x^{'}(x,y)$在矩形区域$[a,b]\times[c,d]$上连续，
+        则$I(x)=\int_{c}^d{f(x,y)dy}$在$[a,b]$上有连续的导函数
+        且$I^{'}(x)=\int_{c}^d{f_x^{'}(x,y)dy} \Leftrightarrow \frac{d}{dx}\int_{c}^d{f(x,y)dy=\int_{c}^d{\frac{\partial}{\partial x}f(x,y)dy}}$
+    \end{block}
+
+    \alert{积分和求导运算可以交换顺序，积分限为常数}
+    $\newline$
+
+    \begin{block}{例题}
+        $$I=\int_{0}^{1}{\frac{\ln(1+x)}{1+x^2}dx}$$
+    \end{block}
+\end{frame}
+
+\begin{frame}
+
+    解：本题直接进行定积分求解求不出来，需引入含参变量积分
+    \begin{enumerate}
+        \item 首先引入参变量$a$
+        $I(a)=\int_{0}^{1}{\frac{\ln(1+ax)}{1+x^2}dx}\ \ a\in[0,1]$
+        $\ \ \ f(x,a)=\frac{\ln(1+ax)}{1+x^2}$
+        $f_a^{'}(x,a)=\frac{x}{(1+x^2)(1+ax)}=\frac{1}{1+a^2}(\frac{a+x}{1+x^2}-\frac{a}{1+ax})$
+        $\newline$
+        \item 由于它们都在$[0,1]\times[0,1]$上连续，则
+        $I^{'}(a)=\int_{0}^{1}{f_a^{'}(x,a)dx}
+        =\int_{0}^{1}{\frac{1}{1+a^2}(\frac{a+x}{1+x^2}-\frac{a}{1+ax})dx}
+        =\frac{1}{1+a^2}[a\arctan{x}+\frac{1}{2}\ln{1+x^2}-\ln(1+ax)]|_{0}^{1}
+        =\frac{1}{1+a^2}[\frac{\pi}{4}a+\frac{1}{2}\ln{2}-\ln(1+a)]$
+        $\newline$
+        \item 显然$I(0)=0$，则$I(1)=I(1)-I(0)=\int_{0}^{1}{I^{'}(a)da}
+        =\int_{0}^{1}{\frac{1}{1+a^2}[\frac{\pi}{4}a+\frac{1}{2}\ln{2}-\ln(1+a)]}
+        =[\frac{\pi}{8}\ln{1+a^2}+\frac{1}{2}\ln{2}\arctan{a}]|_0^{1}-\int_{0}^{1}{\frac{\ln(1+a)}{1+a^2}da}
+        I=I(1)=\frac{\pi}{8}\ln{2}$
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{多元含参变量积分求导}
+    \begin{block}{定理19.3}
+        设$f(x,y)$在矩形区域$[a,b]\times[c,d]$上连续
+        $I(x,u)=\int_c^{u}{f(x,y)dy}$
+        \begin{enumerate}
+            \item $I(x,u)$在矩形区域$[a,b]\times[c,d]$上连续
+            \item 若$f^{'}_x(x,y)$在$[a,b]\times[c,d]$上连续，则$I(x,u)$在$[a,b]\times[c,d]$上对各变元有连续偏导数
+        \end{enumerate}
+    \end{block}
+    $$\frac{\partial I}{\partial u}=f(x,u) \ \ \ \frac{\partial I}{\partial x}=\int_c^{u}{f^{'}_x(x,u)}$$
+\end{frame}
+
+\begin{frame}
+    \frametitle{多元含参变量积分求导}
+    \begin{block}{定理19.4}
+        设$f(x,y)$在矩形区域$[a,b]\times[c,d]$上连续
+        $c(x),d(x)$在$[a,b]$上连续，并且当$x\in [a,b]$有$c\le c(x),d(x)\le d$
+        则$F(x)=\int_{c(x)}^{d(x)}{f(x,y)dy}$在$[a,b]$上连续
+        
+    \end{block}
+    \begin{block}{证明}
+        $I(x,u)=\int_c^{u}{f(x,y)dy}$
+        $\newline F(x)=\int_{c}^{d(x)}{f(x,y)dy}-\int_{c}^{c(x)}{f(x,y)dy}=I(x,d(x))-I(x,c(x))$ 
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{多元含参变量积分求导}
+    \begin{block}{定理19.5}
+        设$f(x,y)$和$f_x^{'}(x,y)$在矩形区域$[a,b]\times[c,d]$上连续
+        $c(x),d(x)$在$[a,b]$上可导，且当$x\in [a,b]$有$c\le c(x),d(x)\le d$
+        则$F(x)=\int_{c(x)}^{d(x)}{f(x,y)dy}$在$[a,b]$上可导
+        且$F^{'}(x)=\int_{c(x)}^{d(x)}{f^{'}_x(x,y)dy}+f(x,d(x))d^{'}(x)-f(x,c(x))c^{'}(x)$
+    \end{block}
+    \begin{block}{证明}
+        $F(x)=\int_{c(x)}^{d(x)}{f(x,y)dy}$
+        令$u=d(x), v=c(x), I(x,u)=\int_c^{u}{f(x,y)dy}$
+        则$F(x)=I(x,u)-I(v,x)$ 
+        $F^{'}(x)=\frac{\partial I}{\partial x} + \frac{\partial I}{\partial u} \frac{\partial u}{\partial x} 
+        - \frac{\partial I}{\partial x} + \frac{\partial I}{\partial v} \frac{\partial v}{\partial x}$
+        
+        根据定理19.3可知$\frac{\partial I}{\partial u}=f(x,u) \ \ \ \frac{\partial I}{\partial x}=\int_c^{u}{f^{'}_x(x,u)}$
+        
+        $\int_{c(x)}^{d(x)}{f^{'}_x(x,y)dy}+f(x,d(x))d^{'}(x)-f(x,c(x))c^{'}(x)$
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{例题}
+    \begin{block}{例题}
+        $F(x)=\int_{0}^{x}{[\int_{t^2}^{x^2}f(t,s)ds]dt}\ \ \ $求$F^{'}(x)$
+    \end{block}
+    \begin{block}{解}
+        令$I(t, x^2, t^2)=\int_{t^2}^{x^2}{f(t,s)ds} \ \ \ \frac{\partial I}{\partial x^2}=f(t,x^2)\ $
+        
+        $F(x)=\int_{0}^{x}{I(t,x^2,t^2)dt}$
+        
+        令$d(x)=x, c(x)=0$
+        对$F(x)$求导数
+        $$\newline F^{'}(x)=\int_{c(x)}^{d(x)}{\frac{\partial I}{\partial x}dt}+I(d(x),x^2,d(x)^2)d^{'}(x)-I(c(x),x^2,c(x)^2)c^{'}(x)$$
+        \Large $=\int_{0}^{x}{\frac{\partial I}{\partial x^2}\frac{\partial x^2}{\partial x}dt}+I(x,x^2,x^2)$
+        \linespread{1.7}\Large $\newline=\int_{0}^{x}{2xf(t,x^2)dt}+\int_{x^2}^{x^2}{f(x,s)ds}
+        =\int_{0}^{x}{2xf(t,x^2)dt}$
+
+    \end{block}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{积分交换次序}
+    \begin{block}{定理19.6}
+        设$f(x,y)$在矩形区域$[a,b]\times[c,d]$上连续
+        $I(x)=\int_{c}^{d}{f(x,y)dy}$
+        则$\int_{a}^{b}{I(x)dx}=\int_{c}^{d}{dy}\int_{a}^{b}{f(x,y)dx}$
+        即$\int_{a}^{b}{dx}\int_{c}^{d}{f(x,y)dy}=\int_{c}^{d}{dy}\int_{a}^{b}{f(x,y)dx}$
+    \end{block}
+    \begin{block}{例题}
+        $\int_{0}^{1}{\frac{x^b-x^a}{\ln{x}}dx}$
+    \end{block}
+
+    \begin{block}{解}
+
+        将$\frac{x^b-x^a}{\ln{x}}$看作积分$\frac{x^b-x^a}{\ln{x}}=\int_a^b{x^ydy}$
+        $\newline\int_{0}^{1}{\frac{x^b-x^a}{\ln{x}}dx}=\int_{0}^{1}{dx}{\int_a^b{x^ydy}}
+        =\int_{a}^{b}{dy}{\int_0^1{x^ydx}}
+        \newline=\int_a^b{\frac{1}{1+y}dy}=\ln{(1+y)}|^b_a=\ln{\frac{1+b}{1+a}}$
+
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{总结}
+    \begin{enumerate}
+        \item 含参变量积分
+        \begin{itemize}
+            \item 将含参变量积分视为函数
+            \item 积分和极限运算交换顺序
+        \end{itemize}
+        \item 含参变量积分导数
+        \begin{itemize}
+            \item 积分限为常数，一元函数导数
+            \item 积分限为变量，多元函数偏导数
+        \end{itemize}
+        \item 积分交换次序
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[standout]
+    \Huge 感谢观看！
+
+\end{frame}
+
+\end{document}

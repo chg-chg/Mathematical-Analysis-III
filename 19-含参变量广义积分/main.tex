@@ -1,0 +1,300 @@
+%!TEX TS-program=xelatex
+\documentclass[xetex]{beamer}
+% 将上面这一行修改成下面这个样子，可以创建适合于发布的版本，这去除了所有的动画
+% \documentclass[xetex, handout]{beamer}
+
+% 规范注意：
+
+% 使用正确的主题（beamer主题、文字字体）
+% 使用正确的title信息（title、subtitle、author、date）
+% 合理使用frame 和 standout frame
+% 块（block、exampleblock、alertblock）以及文字段落内部的\alert的使用
+% 使用图片需要使用\begin{figure}...\end{figure}并附带\caption和\label信息
+% 使用enumerate和itemize组织你的点
+% 使用section给你的幻灯片分部分
+% 公式，文字段落内嵌公式和单独的公式块的使用
+% \DeclareMathOperator的使用，以及学会在网上查找你不知道怎么输入的数学符号
+% 动画的使用
+% 讲课录制使用什么版本的文档；对外发布使用什么版本的文档（handout）
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+%\usepackage{XITSMath}
+\usepackage{nopageno}
+
+\DeclareMathOperator{\argmax}{argmax}
+
+\usetheme[block=fill]{metropolis}
+%\setmainfont{XITS} 
+%\setmathfont{xits-math.otf}
+
+\setmainfont{XITS}
+[    Extension = .otf,
+   UprightFont = *-Regular,
+      BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+BoldItalicFont = *-BoldItalic,
+]
+\setmathfont{XITSMath-Regular}
+[    Extension = .otf,
+      BoldFont = XITSMath-Bold,
+]
+
+\title{含参变量的积分}
+\subtitle{含参变量的广义积分}
+\author{数学分析MOOC小组}
+\date{2020年8月21日}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\begin{frame}
+    \frametitle{一致收敛}
+    \begin{block}{含参变量广义积分一致收敛定义}
+        设$f(x,y)$定义在$[a,b]\times[c,+\infty]$，且对$\forall x\in[a,b]$
+        无穷积分$I(x)=\int_{c}^{+\infty}{f(x,y)dy}$收敛，
+        若对于$\forall \epsilon > 0, \exists A_0 > c$，当$A>A_0$时有
+        $\vert \int_c^A{f(x,y)dy}-I(x)\vert < \epsilon$或$\vert \int_A^{+\infty}{f(x,y)dy}\vert < \epsilon$
+        对$\forall x \in [a,b]$都成立，则称含参变量广义积分$\int_c^{+\infty}{f(x,y)dy}$在$[a,b]$一致收敛
+    \end{block}
+
+    \begin{block}{例题}
+        证明:$\int_{0}^{+\infty}{xe^{-xy}dy}$在区间$[a,+\infty)\ (a>0)$一致收敛
+        $\int_{A}^{+\infty}{xe^{-xy}dy}=-e^{-xy}|^{+\infty}_{A}=e^{-Ax}\le e^{-Aa}<\epsilon \Leftrightarrow A > \frac{-ln{\epsilon}}{a} = A_0$
+    \end{block}
+
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{一致收敛}
+    含参变量广义积分$f(x,y)$定义在$[a,b]\times[c,+\infty]$上，且对$\forall x\in[a,b]$
+    无穷积分$\int_{c}^{+\infty}{f(x,y)dy}$一致收敛的充要条件
+    \begin{block}{柯西准则}
+        对$\forall \epsilon>0,\exists A_0(A_0>0)>c$，当$A',A''>A_0$时，对于$\forall x \in [a,b]$有
+        $\int_{A'}^{A''}{f(x,y)dy}<\epsilon$
+    \end{block}
+    \begin{block}{M判别法}
+    \begin{enumerate}
+        \item 设存在函数$M(y)$与常数$B>c$使得当$y\ge B$与$x\in [a,b]$时，有$\vert f(x,y)\vert\le M(y)$
+        \item 广义积分$\int_{c}^{+\infty}{M(y)}$收敛
+    \end{enumerate}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{一致收敛}
+    含参变量广义积分$\int_c^{+\infty}{f(x,y)g(x,y)dy}$在$x\in[a,b]$上一致收敛充要条件
+    \begin{block}{狄利克雷判别法}
+        \begin{enumerate}
+            \item 含参变量正常积分$\int_c^A{f(x,y)dy}$在$A\ge c$与$x\in [a,b]$有界，即存在$M>0$对$\forall A>c$及$\forall x\in [a,b]$有$\vert \int_c^A{f(x,y)dy}\vert \le M$
+            \item 对每个固定的$x\in[a,b]$，函数$g(x,y)$关于y是单调的，且当$y \to +\infty$时，$g(x,y)$在$x\in[a,b]$一致的趋近于0
+        \end{enumerate}
+    \end{block}   
+    \begin{block}{阿贝尔判别法}
+        \begin{enumerate}
+            \item $\int_c^{+\infty}{f(x,y)dy}$在$x\in[a,b]$上一致收敛
+            \item 对每个固定的$x\in[a,b]$，函数$g(x,y)$关于y是单调的，且$g(x,y)$在$x\in[a,b],y\ge c$有界
+        \end{enumerate}
+    \end{block}   
+\end{frame}
+
+\begin{frame}
+    \frametitle{例题}
+    证明下列积分一致收敛
+    \begin{block}{1}
+        $\int_0^{+\infty}{\frac{cos(xy)}{x^2+y^2}dy}\ (x\ge a >0)$
+        
+        证明：当$(x\ge a >0)$时，$\forall y \in [0, +\infty]$有
+        $$\vert \frac{cos(xy)}{x^2+y^2}\vert \le \frac{1}{x^2+y^2}\le \frac{1}{a^2+y^2}$$
+        $$\int_0^{+\infty}{\frac{1}{a^2+y^2}dy}=\frac{1}{a}\arctan {\frac{y}{a}}|^{+\infty}_0=\frac{\pi}{2a}$$
+        根据M判别法可知上述广义积分一致收敛
+    \end{block}
+    
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{例题}
+    \begin{block}{2}
+        $\int_{1}^{+\infty}{\frac{e^{-xy}\cos y}{y^p}dp}(p>0)\ x\in[0,+\infty)$
+        
+        证明：将被积函数分为两部分$f(x,y)=\cos y\ \ \ g(x,y)=\frac{e^{-xy}}{y^p}$
+        \begin{enumerate}
+            \item $\vert \int_1^A{cos(y)}\vert = \vert \sin A- \sin 1 \vert \le 2 $
+            \item $\frac{e^{-xy}}{y^p}$在$y\ge 1$时，关于$y$单调下降，且当$y \to +\infty$关于$x$一致趋向于0
+            根据狄利克雷判别法可知上述广义积分一致收敛
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{含参变量广义积分连续性}
+    \begin{block}{定理19.1}
+        设$f(x,y)$在矩形区域$[a,b]\times[c,+\infty)$上连续，
+        若含参变量广义积分$I(x)=\int_{c}^{+\infty}{f(x,y)dy}$在$x\in[a,b]$上一致收敛，
+        则$I(x)$在$x\in[a,b]$上连续
+    \end{block}
+    $\forall x \in [a,b] \Rightarrow \lim\limits_{x \to x_0}I(x)=I(x_0)$
+    即$\lim\limits_{x \to x_0}\int_{c}^{+\infty}{f(x,y)dy}
+    =\int_{c}^{+\infty}{f(x_0,y)dy}
+    =\int_{c}^{+\infty}{\lim\limits_{x \to x_0}f(x,y)dy}$
+    
+    \alert{积分和极限运算可以交换顺序}
+
+\end{frame}
+
+
+\begin{frame}
+    
+    \begin{block}{例题}
+        判断函数$F(x)=\int_{0}^{+\infty}{\frac{y^2}{1+y^x}dy}$在$x \in[3,+\infty)$上的连续性
+        $\forall x_0>3, \exists 3<b<x_0$当$y\ge 1$，$\forall x \in [b,+\infty)$，有
+        $$\frac{y^2}{1+y^x}=\frac{1}{y^{-2}+y^{x-2}}<\frac{1}{y^{x-2}}\le \frac{1}{y^{b-2}}$$
+        同时$\int_1^{+\infty}{\frac{1}{y^{b-2}}}$收敛，根据M判别法$\int_{0}^{+\infty}{\frac{y^2}{1+y^x}dy}$在$[b,+\infty)$一致收敛，
+        则最终$F(x)$在$[3,\infty)$上连续
+    \end{block}
+
+\end{frame}
+
+
+
+\begin{frame}
+    \frametitle{含参广义积分求导}
+    \begin{block}{定理19.2}
+        设$f(x,y)$和$f_x^{'}(x,y)$在矩形区域$[a,b]\times[c,+\infty)$上连续，
+        若含参变量广义积分$I(x)=\int_{c}^{+\infty}{f(x,y)dy}$在$[a,b]$上收敛，
+        若含参变量广义积分$I(x)=\int_{c}^{+\infty}{f^{'}_x(x,y)dy}$在$[a,b]$上一致收敛，
+
+        则$I(x)=\int_{c}^{+\infty}{f(x,y)dy}$在$[a,b]$上可导
+        且$I^{'}(x)=\int_{c}^{+\infty}{f_x^{'}(x,y)dy} \Leftrightarrow \frac{d}{dx}\int_{c}^{+\infty}{f(x,y)dy=\int_{c}^{+\infty}{\frac{\partial}{\partial x}f(x,y)dy}}$
+    \end{block}
+
+    \alert{积分和求导运算可以交换顺序}
+    $\newline$
+
+    \begin{block}{例题}
+        $$I=\int_{0}^{+\infty}{\frac{1-e^{-t}}{t}\cos tdt}$$
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    解：本题直接进行定积分求解求不出来，需引入含参变量积分
+    \begin{enumerate}
+        \item 首先引入参变量$a(>0)$
+        $I(a)=\int_{0}^{+\infty}{\frac{1-e^{-at}}{t}\cos tdt}$
+        
+        对$\forall a > 0, \exists \ b>0:b<a$
+        
+        使得$\frac{1-e^{-at}}{t}\cos t$和$\frac{\partial}{\partial a}\frac{1-e^{-at}}{t}\cos t = e^{-at}\cos t$均在$[b,+\infty)\times[0,+\infty)$上连续
+
+        对$1-e^{-at} \cos t$单调有界，对于$\int_0^{+\infty}{\frac{\cot t}{t}dt}$收敛，根据广义积分的阿贝尔判别法，其收敛
+
+        对$\forall a \in [b,+\infty)$存在$\vert e^{-at}\cos t \le e^{-bt}\vert$，同时$\int_{0}^{+\infty}{e^{-bt}dt}$收敛,则$\int_0^{+\infty}{e^{-at}\cos t dt}$一致收敛
+        \item 求导数
+        对$\forall a \in [b,+\infty)$有$I^{'}(a)=\int_{0}^{+\infty}{e^{-at}\cos t dt}=\frac{-a\cos t+\sin t}{a^2+1}e^{-at}|^{+\infty}_0=\frac{a}{a^2+1}$
+        则$I(a)=\frac{1}{2}\ln{1+a^2}+c$
+        \item 根据$I(0)=0 \Rightarrow c=0$，$I(1)=\frac{1}{2}\ln {2}$
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{积分交换次序}
+    \begin{block}{定理19.6}
+        设$f(x,y)$在矩形区域$[a,b]\times[c,+\infty)$上连续，
+        若含参变量广义积分$I(x)=\int_{c}^{+\infty}{f(x,y)dy}$在$x\in[a,b]$上一致收敛，
+        则$\int_{a}^{b}{I(x)dx}=\int_{c}^{+\infty}{dy}\int_{a}^{b}{f(x,y)dx}$
+        即$\int_{a}^{b}{dx}\int_{c}^{+\infty}{f(x,y)dy}=\int_{c}^{+\infty}{dy}\int_{a}^{b}{f(x,y)dx}$
+    \end{block}
+    $\newline$
+    \begin{block}{例题}
+        $\int_{0}^{+\infty}{\frac{e^{-ax^2}-e^{-bx^2}}{x}dx} (a>0, b>0)$
+    \end{block}
+        
+\end{frame}
+
+
+\begin{frame}
+    解：令A>0
+    \begin{enumerate}
+        \item $\int_0^A{e^{-ax^2}-e^{-bx^2}}\le \int_0^A{e^{-ax^2}+e^{-bx^2}}\le \int_0^A{\frac{1}{ax^2+1}+\frac{1}{bx^2+1}}\le \frac{1}{\sqrt{a}}\arctan{\sqrt{a}A}+\frac{1}{\sqrt{b}}\arctan{\sqrt{b}A}$
+        \item $\frac{1}{x}$单调，且$x\to +\infty$时趋近于0
+    \end{enumerate}
+    根据广义积分的狄利克雷判别法可以得知，此广义积分一致收敛
+
+    将$\frac{e^{-ax^2}-e^{-bx^2}}{x}$看作$-x\int_a^b{e^{-tx^2}dt}$
+    $\newline\int_{0}^{+\infty}{\frac{e^{-ax^2}-e^{-bx^2}}{x}dx}=-\int_{0}^{+\infty}{xdx}{\int_b^a{e^{-tx^2}dt}}
+    =\int_{a}^{b}{dt}{\int_0^{+\infty}{xe^{-tx^2}dt}}
+    \newline -\int_{a}^{b}{\frac{1}{2t}dt}{\int_0^{+\infty}{e^{-tx^2}d(-tx^2)}}
+    =-\int_{a}^{b}{\frac{1}{2t}e^{-tx^2}|^{+\infty}_0 dt}
+    =\int_{a}^{b}{\frac{1}{2t}dt}=\frac{1}{2}\ln \frac{b}{a}$
+        
+\end{frame}
+
+\begin{frame}
+    \frametitle{积分交换次序}
+    \begin{block}{迪尼定理}
+        含参变量广义积分$f(x,y)$定义在$[a,+\infty)\times[c,+\infty)$上连续，非负。
+        若$\int_{a}^{+\infty}{f(x,y)dy}$在$[c,+\infty)$收敛，且作为$y$的函数在$[c,d]$上连续，
+        则$\int_{a}^{+\infty}{f(x,y)dy}$在$[c,+\infty)$是一致收敛
+    \end{block}
+    \begin{block}{积分交换次序}
+        含参变量广义积分$f(x,y)$定义在$[a,+\infty)\times[c,+\infty)$上连续，非负。
+        $\int_{a}^{+\infty}{f(x,y)dx}$，$\int_{c}^{+\infty}{f(x,y)dy}$都收敛，且分别在$[a,+\infty)$和$[c,+\infty)$上连续，
+        若$\int_{a}^{+\infty}{dy}\int_{c}^{+\infty}{f(x,y)dx}$，$\int_{a}^{+\infty}{dx}\int_{c}^{+\infty}{f(x,y)dy}$
+        中有一个存在另一个也存在，且相等
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{例题}
+    \begin{block}{例}
+        $I=\int_0^{+\infty}{du}\int_0^{+\infty}{ue^{-(1+t^2)u^2}dt}$
+    \end{block}
+    \begin{block}{解}
+        $\int_0^{+\infty}{ue^{-(1+t^2)u^2}du}=\frac{1}{2}\frac{1}{1+t^2}$
+        $\newline \int_0^{+\infty}{ue^{-(1+t^2)u^2}dt}=\frac{1}{e^{u^2}}\int_0^{+\infty}{\frac{1}{e^{u^2t^2}}dt} \le \frac{1}{e^{u^2}}\int_0^{+\infty}{\frac{1}{u^2t^2+1}dt}$
+        
+        根据积分交换原则
+        $\newline I=\int_0^{+\infty}{du}\int_0^{+\infty}{ue^{-(1+t^2)u^2}dt}
+        \newline=\frac{1}{2}\int_0^{+\infty}{\frac{1}{1+t^2}e^{-(1+t^2)u^2}|^{0}_{-\infty}dt}
+        \newline=\frac{1}{2}\int_0^{+\infty}{\frac{1}{1+t^2}dt}
+        \newline=\frac{1}{2}\arctan t|^{+\infty}_0=\frac{\pi}{4}$
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{总结}
+    \begin{enumerate}
+        \item 一致收敛
+        \item 含参变量广义积分
+        \begin{itemize}
+            \item 将含参变量广义积分视为函数
+            \item 积分和极限运算交换顺序
+        \end{itemize}
+        \item 含参广义变量积分导数
+        
+        \item 积分交换次序
+        \begin{itemize}
+            \item 广义积分和正常积分交换
+            \item 广义积分和广义积分交换
+        \end{itemize}
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[standout]
+    \Huge 感谢观看！
+
+\end{frame}
+
+\end{document}
