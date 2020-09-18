@@ -274,3 +274,7 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+# annoying system files
+**/*.DS_Store
+**/*.ini
