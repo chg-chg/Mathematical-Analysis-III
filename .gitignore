@@ -276,5 +276,5 @@ TSWLatexianTemp*
 *.lpz
 
 # annoying system files
-**/*.DS_Store
+**/.DS_Store
 **/*.ini
