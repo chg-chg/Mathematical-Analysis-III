@@ -6,4 +6,4 @@
 各分支编译状态：
 |分支|状态|
 |:-:|:--:|
-|[v1](https://github.com/SDCS-MOOC/Mathematical-Analysis-III/tree/v1)|![v1](https://github.com/SDCS-MOOC/Mathematical-Analysis-III/workflows/v1/badge.svg?branch=v1&event=push)|
+|[v1](https://github.com/SDCS-MOOC/Mathematical-Analysis-III/tree/v1)|![build](https://github.com/SDCS-MOOC/Mathematical-Analysis-III/workflows/build/badge.svg?branch=v1&event=push)|
