@@ -1,0 +1,150 @@
+%!TEX TS-program = xelatex
+\documentclass[xetex]{beamer}
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\graphicspath{{./img/}}
+
+\usetheme[block=fill, subsectionpage=progressbar]{metropolis}
+
+\setmathfont{XITS Math}
+
+\begin{document}
+	\begin{frame}
+		\title{各种积分间的联系与场论初步}
+		\subtitle{各种积分间的联系}
+		\author{数学分析MOOC小组}
+		\date{  }
+		\titlepage
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{概览}
+		\begin{itemize}
+			\item[1.] 知识回顾		
+			\item[2.] 习题讲解
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\section{知识回顾}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{积分与路径无关的条件}
+		\textbf{定理22.4}
+			设$D$是平面单连通区域，函数$P(x, y)$，$Q(x, y)$在$D$上有连续偏导数，则下列四则断言等价：
+			\begin{itemize}
+				\item[(1)] 设$D$中任一逐段光滑的闭曲线$L$，有
+					\begin{equation*}
+						\oint_L P\mathrm{d}x + Q\mathrm{d}y = 0
+					\end{equation*}
+				\item[(2)]对$D$中任一逐段光滑的闭曲线$L$，曲线积分
+					\begin{equation*}
+						\int_L P\mathrm{d}x + Q\mathrm{d}y
+					\end{equation*}
+					与路径无关，只与$L$的起点与终点有关；
+				\item[(3)]微分式$P\mathrm{d}x + Q\mathrm{d}y$在$D$内是某函数$u(x, y)$的全微分，即有
+					\begin{equation*}
+						\mathrm{d}u = P\mathrm{d}x + Q\mathrm{d}y
+					\end{equation*}
+				\item[(4)] 在$D$内每一点有
+					\begin{equation*}
+						\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}
+					\end{equation*}
+			\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{奇点的存在}
+		使得$\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$不成立的点称为积分$\int_L P\mathrm{d}x + Q\mathrm{d}y$的奇点。在复连通区域$D$中条件$\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$，这时有以下结论：
+		\begin{itemize}
+			\item[(1)]对$D$内任意一条不包围奇点的闭曲线$L$，有
+				\begin{equation*}
+					\oint_L P\mathrm{d}x + Q\mathrm{d}y = 0
+				\end{equation*}
+			\item[(2)] 环绕某一奇点的任意两条简单闭曲线$L_1$和$L_2$的正向的积分相等，即
+				\begin{equation*}
+					\oint_{L_1} P\mathrm{d}x + Q\mathrm{d}y = \oint_{L_2} P\mathrm{d}x + Q\mathrm{d}y
+				\end{equation*}
+				这个公共值称为该奇点的循环常数。
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\frametitle{奇点的存在}
+		\begin{itemize}
+			\item[(3)]环绕某一奇点$n$圈的光滑闭曲线$L$，其中$n_1$圈是正向，$n_2$圈是负向，$n_1 + n_2 = n$，则积分
+			\begin{equation*}
+			I = \oint_L P\mathrm{d}x + Q\mathrm{d}y
+			\end{equation*}
+			等于该奇点循环常数的$n_1 - n_2$倍。
+			\item[(4)]若不自相交光滑闭曲线$L$包围了$k$个奇点，则沿$L$正向的积分
+			\begin{equation*}
+			I = \oint_L P\mathrm{d}x + Q\mathrm{d}y
+			\end{equation*}
+			等于这$k$个奇点循环常数的和。
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\frametitle{积分与路径无关的条件：三维的情形}
+		\textbf{定理22.5}
+			设$V$是空间的单连通区域，函数$P(x, y)$，$Q(x, y)$，$R(x, y)$在$V$上有连续偏导数，则下列四则断言等价：
+			\begin{itemize}
+				\item[(1)] 沿$V$中任一逐段光滑的闭曲线$L$，有
+				\begin{equation*}
+				\oint_L P\mathrm{d}x + Q\mathrm{d}y + R\mathrm{d}z = 0
+				\end{equation*}
+				\item[(2)]对$V$中任一逐段光滑的闭曲线$L$，曲线积分
+				\begin{equation*}
+				\int_L P\mathrm{d}x + Q\mathrm{d}y+ R\mathrm{d}z
+				\end{equation*}
+				与路径无关，只与$L$的起点与终点有关；
+				\item[(3)]$P\mathrm{d}x + Q\mathrm{d}y+ R\mathrm{d}z$在$V$内是某函数$u(x, y, z)$的全微分，即有
+				\begin{equation*}
+				\mathrm{d}u = P\mathrm{d}x + Q\mathrm{d}y + R\mathrm{d}z
+				\end{equation*}
+				\item[(4)] 在$V$内每一点有
+				\begin{equation*}
+				\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}, 
+				\frac{\partial Q}{\partial z} = \frac{\partial R}{\partial y},
+				\frac{\partial R}{\partial x} = \frac{\partial P}{\partial z}
+				\end{equation*}
+			\end{itemize}
+			
+	\end{frame}
+	
+	\begin{frame}
+		\section{习题讲解}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{习题1(1)}
+		验证以下积分与路径无关，并求它们的值
+		\begin{equation*}
+			\int_{(0,0)}^{(1,1)} (x - y) (\mathrm{d}x - \mathrm{d}y)
+		\end{equation*}
+		
+		\textbf{解：}
+			\begin{equation*}
+			  \begin{split}
+			    &\int_{(0,0)}^{(1,1)} (x - y) (\mathrm{d}x - \mathrm{d}y) \\
+			  = &\int_{(0,0)}^{(1,1)} (x - y)\mathrm{d}x + (y- x)\mathrm{d}y \\
+			  = &\int_{(0, 0)}^{(1, 0)}  (x - y)\mathrm{d}x + \int_{(1, 0)}^{(1, 1)} (y - x) \mathrm{d}y\\
+			  = &0.5 - 0.5\\
+			  = &0\\
+			  \end{split}
+			\end{equation*}
+	\end{frame}
+	
+	\begin{frame}
+		\section{谢谢大家！}
+	\end{frame}
+\end{document}

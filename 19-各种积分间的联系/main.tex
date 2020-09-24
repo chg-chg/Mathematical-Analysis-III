@@ -1,0 +1,124 @@
+%!TEX TS-program = xelatex
+\documentclass[xetex]{beamer}
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\graphicspath{{./img/}}
+
+\usetheme[block=fill, subsectionpage=progressbar]{metropolis}
+
+\setmathfont{XITS Math}
+
+\begin{document}
+	\begin{frame}
+		\title{各种积分间的联系与场论初步}
+		\subtitle{各种积分间的联系}
+		\author{数学分析MOOC小组}
+		\date{  }
+		\titlepage
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{概览}
+		\begin{itemize}
+			\item[1.] 知识回顾
+				\begin{itemize}
+					\item[1.1] 格林公式
+					\item[1.2] 高斯公式
+					\item[1.3] 斯托克斯公式
+				\end{itemize}			
+			\item[2.] 习题讲解
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\section{知识回顾}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{格林公式}
+		\textbf{定理22.1}
+			设$D$是由逐段光滑闭曲线$L$围成的平面单连通闭区域，函数$P(x, y)$，$Q(x, y)$在$D$上有一阶连续偏导数，则有
+			\begin{equation*}
+				\iint_D (\frac{ \partial Q }{ \partial x } - \frac{ \partial P }{ \partial y }) \mathrm{d} x \mathrm{d} y = \oint_L P\mathrm{d} x + Q\mathrm{d} x
+			\end{equation*}
+			其中右端的积分路径是闭曲线$L$，方向取正向。
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{高斯公式}
+		\textbf{定理22.2}
+		设空间区域$V$由分片光滑的双侧封闭曲面$S$围成，函数$P(x, y, z)$，$Q(x, y, z)$，$R(x, y, z)$在$V$及$S$上有一阶连续偏导数，则有
+		\begin{equation*}
+			\iiint_V (\frac{ \partial P }{ \partial x } + \frac{ \partial Q }{ \partial y } + \frac{ \partial R }{ \partial z })\mathrm{d} x \mathrm{d} y \mathrm{d} z = \oiint _S P\mathrm{d} y \mathrm{d} z + Q\mathrm{d} z \mathrm{d} x + R\mathrm{d} x \mathrm{d} y
+		\end{equation*}
+		其中$S$的方向为外侧。
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{斯托克斯公式}
+		\textbf{定理22.3}
+		若光滑曲面$S$的边界为光滑曲线$L$，函数$P$、$Q$、$R$在曲面$S$及曲线$L$上具有连续的一阶偏导数，则
+		\begin{equation*}
+			\begin{split}
+			&\iint_S(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z})\mathrm{d} y \mathrm{d} z + 
+			(\frac{\partial P}{\partial z} - \frac{\partial R}{\partial x})\mathrm{d} z \mathrm{d} x +
+			(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y})\mathrm{d} x \mathrm{d} y \\
+			= & \iint_S
+				\begin{vmatrix} 
+					\mathrm{d} y \mathrm{d} z & \mathrm{d} z \mathrm{d} x & \mathrm{d} x \mathrm{d} y \\ 
+					\frac{\partial }{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\
+					P & Q & R\\
+				\end{vmatrix}\quad\\
+			= & \oint_L P\mathrm{d} x + Q\mathrm{d} y + R\mathrm{d} z\\
+			\end{split}
+		\end{equation*}
+	\end{frame}
+	
+	
+	\begin{frame}
+		\section{习题讲解}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{例2}
+		计算$I = \oint_L \frac{x \mathrm{d}y - y\mathrm{d}x}{x^2 + y^2}$，其中$L$为$x^2 + y^2 = a^2$的正向。
+		
+		\textbf{解：}
+			在$L$上有$x^2 + y^2 = a^2$，故有
+			\begin{equation*}
+				I = \frac{1}{a^2}\oint_L x \mathrm{d}y - y\mathrm{d}x
+			\end{equation*}
+			取$P(x, y) = -y$，$Q(x, y) = x$，由格林公式得
+			\begin{equation*}
+				I = \frac{1}{a^2}\iint_D 2 \mathrm{d}x \mathrm{d}y = \frac{2}{a^2}\pi a^2 = 2\pi
+			\end{equation*}
+	\end{frame}
+	\begin{frame}
+		\frametitle{习题3(2)}
+		$\iint_S x^3 \mathrm{d} y \mathrm{d} z + y^3 \mathrm{d} z \mathrm{d} x + z^3 \mathrm{d} x \mathrm{d} y$，其中$S$是单位球面得外侧。
+		
+		\textbf{解：}
+			由题意，知道$x^2 + y^2 + z^2 = 1$，设函数$P(x, y, z) = x^3$，$Q(x, y, z) = y^3$，$R(x, y, z) = z^3$，则由高斯公式得
+			\begin{equation*}
+				\begin{split}
+				& \iint_S x^3 \mathrm{d} y \mathrm{d} z + y^3 \mathrm{d} z \mathrm{d} x + z^3 \mathrm{d} x \mathrm{d} y \\
+		      = & \iiint_V (3x^2 + 3y^2 + 3z^2) \mathrm{d} x \mathrm{d} y \mathrm{d} z \\
+			  = & 3 \iiint_V  \mathrm{d} x \mathrm{d} y \mathrm{d} z \\
+			  = & 3 \times \frac{4\pi}{3}\\
+			  = & 4\pi
+				\end{split}
+			\end{equation*}
+	\end{frame}
+	\begin{frame}
+		\section{谢谢大家！}
+	\end{frame}
+\end{document}

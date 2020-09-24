@@ -1,0 +1,139 @@
+%!TEX TS-program = xelatex
+\documentclass[xetex]{beamer}
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\graphicspath{{./img/}}
+
+\usetheme[block=fill, subsectionpage=progressbar]{metropolis}
+
+\setmathfont{XITS Math}
+
+\begin{document}
+	\begin{frame}
+		\title{重积分}
+		\subtitle{重积分化累次积分}
+		\author{数学分析MOOC小组}
+		\date{ }
+		\titlepage
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{概览}
+		\begin{itemize}
+			\item[1.] 知识回顾
+				\begin{itemize}
+					\item[1.1] 二重积分化累次积分
+					\item[1.2] 三重积分化累次积分
+				\end{itemize}			
+			\item[2.] 习题讲解
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\section{知识回顾}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{二重积分化累次积分}
+		\textbf{定理20.1}
+			
+			若$f(x,y)$在矩形区域$D = [a, b] \times [c, d]$上可积，并且对$[a,b]$上的任何$x$，含参变量积分
+			\begin{equation*}
+				A(x) = \int_{c}^{d} f(x,y) \mathrm{d} y
+			\end{equation*}
+			存在，则
+			\begin{equation*}
+				\iint_{D} f(x, y) \mathrm{d} x \mathrm{d} y = \int_{a}^{b} \mathrm{d} x \int_{c}^{d} f(x, y) \mathrm{d} y
+			\end{equation*}
+		
+		\textbf{推论 1}
+		
+			设$f(x,y)$在$D = [a, b] \times [c, d]$上连续，则
+			\begin{equation*}
+				\iint_{D} f(x, y) \mathrm{d} x \mathrm{d} y = \int_{a}^{b} \mathrm{d} x \int_{c}^{d} f(x, y) \mathrm{d} y =  \int_{c}^{d} \mathrm{d} y \int_{a}^{b} f(x, y) \mathrm{d} x
+			\end{equation*}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{二重积分化累次积分}
+		\textbf{定理20.2}
+		
+			设$D = \{(x,y) | y_1(x) \leq y \leq y_2(x), a \leq x \leq b \}$，$y_1(x)$，$y_2(x)$在$[a, b]$上连续，$f(x,y)$在$D$上连续，则
+			\begin{equation*}
+				\iint_{D} f(x, y) \mathrm{d} x \mathrm{d} y = \int_{a}^{b} \mathrm{d} x \int_{y_1(x)}^{y_2(x)} f(x, y) \mathrm{d} y
+			\end{equation*}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{三重积分化累次积分}
+		\begin{itemize}
+			\item[1.] 
+				\begin{equation*}
+					\iiint_{V} f(x,y,z)\mathrm{d} x \mathrm{d} y\mathrm{d} z = \iint_D \mathrm{d}x \mathrm{d} y \int_{e}^{f} f(x,y,z) \mathrm{d} z
+				\end{equation*}
+			\item[2.]
+				\begin{equation*}
+					\iiint_{V} f(x,y,z)\mathrm{d} x \mathrm{d} y\mathrm{d} z = \iint_D \mathrm{d}x \mathrm{d} y \int_{z_1(x, y)}^{z_2(x, y)} f(x,y,z) \mathrm{d} z
+				\end{equation*}
+			\item[3.]
+				\begin{equation*}
+					\iiint_{V} f(x,y,z)\mathrm{d} x \mathrm{d} y\mathrm{d} z = \int_{e}^{f} \mathrm{d} z \iint_D f(x,y,z) \mathrm{d}x \mathrm{d} y 
+				\end{equation*}
+		\end{itemize}
+	\end{frame}
+	
+	
+	\begin{frame}
+		\section{习题讲解}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{习题1(2)}
+		计算二重积分
+		\begin{equation*}
+			\iint_D cos(x + y) \mathrm{d}x \mathrm{d}y, D = [0, \frac{\pi}{2}] \times [0, \pi]
+		\end{equation*}
+		
+		\textbf{解：}
+			\begin{equation*}
+				\begin{split}
+				& \iint_D cos(x + y) \mathrm{d}x \mathrm{d}y \\
+			=   & \int_{0}^{\frac{\pi}{2}} \mathrm{d}x \int_{0}^{\pi} cos(x + y) \mathrm{d} y\\ 
+			=   & \int_{0}^{\frac{\pi}{2}} (\sin (x + \pi) - \sin (x)) \mathrm{d} x\\
+			=   & -2\\
+				\end{split}
+			\end{equation*}
+	\end{frame}
+	\begin{frame}
+		\frametitle{习题8(2)}
+		计算三重积分
+		\begin{equation*}
+			\iiint_V z \mathrm{d}x \mathrm{d}y \mathrm{d}z
+		\end{equation*}
+		
+		其中$V$ 由曲面 $z = x^2 + y^2$，$z = 1$，$z = 2$所围成。
+		
+		\textbf{解：}
+		\begin{equation*}
+			\begin{split}
+					& \iiint_V z \mathrm{d}x \mathrm{d}y \mathrm{d}z \\
+				=   & \int_{1}^{2} z \mathrm{d}z \iint_D \mathrm{d}x \mathrm{d}y \\
+				=	& \int_{1}^{2} \pi z^2 \mathrm{d}z\\
+				=   & \frac{7}{3} \pi \\
+			\end{split}
+		\end{equation*}
+	\end{frame}
+	
+	\begin{frame}
+		\section{谢谢大家！}
+	\end{frame}
+\end{document}
