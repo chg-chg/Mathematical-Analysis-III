@@ -1,0 +1,229 @@
+% curve
+% 空间曲线的切线与法平面
+\section{空间曲线的切线与法平面}
+\subsection{定义}
+\begin{frame}
+    \frametitle{定义}
+
+    \begin{figure}
+        \centering
+        \def\svgwidth{.5\columnwidth}
+        
+        \scalebox{.6}{\input{img/tangent.eps_tex}}
+        
+        \caption{曲线$L$、割线$\overline{PQ}$和切线$\overline{PT}$\label{fig:tangent}}
+    \end{figure}
+
+    图~\ref{fig:tangent}当中曲线$L$上一点$P$处的切线$\overline{PT}$定义为：\alert{过$P$点的割线$\overline{PQ}$当$Q$点沿曲线趋于$P$的极限位置时的直线}。
+
+\end{frame}
+
+\subsection{切向量求法}
+\begin{frame}
+    \frametitle{切向量求法}
+
+    $L$的曲线方程给出的形式不同，对于割线的计算也存在不同方法，可分为三种情况。
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{切向量求法·情形一}
+
+    \begin{center}
+        \fbox{\textbf{$L$的曲线方程为$x=x(t),\ y=y(t),\ z=z(t).\ \alpha\leq t\leq\beta$}}
+    \end{center}\vfill\pause
+
+    曲线上点$P(x_0,y_0,z_0)$为$t=t_0$时对应于$L$上的$P$点，即其坐标为$\left(x_0,y_0,z_0\right)$。$Q$点坐标为$\left(x(t),y(t),z(t)\right)$，则向量$\overrightarrow{PQ}$为$\left(x(t)−x_0,y(t)−y_0,z(t)−z_0\right)$，$\overrightarrow{PQ}$向量必然平行于向量
+    \begin{equation}
+        \left(\frac{x(t)-x_0}{t-t_0},\frac{y(t)-y_0}{t-t_0},\frac{z(t)-z_0}{t-t_0}\right)\label{eq:secant_vec}
+    \end{equation}\vfill
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{切向量求法·情形一}
+    令$t\to t_0$取极限则此时$\overline{PQ}$成为割线，从而割线上的向量成为切向量。所以$\overrightarrow{PQ}$成为切向量，则(\ref{eq:secant_vec})必然是切向量且$t\to t_0$取极限。切向量可以表示为\pause
+    \begin{equation}
+        \alert{\boldsymbol{\tau} = \pm\left(x^\prime(t_0),y^\prime(t_0),z^\prime(t_0)\right)}\label{eq:tangent_vec1}
+    \end{equation}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{切向量求法·情形二}
+
+    \begin{center}
+        \fbox{\textbf{$L$的曲线方程为$y=y(x),\ z=z(x)$}}
+    \end{center}\vfill\pause
+
+    可以将$x$视作$t$，$x=x,\ y=y(x),\ z=z(x)$的切向量变为\pause
+    \begin{equation}
+        \alert{\boldsymbol{\tau} = \pm\left(1,y^\prime(x_0),z^\prime(x_0)\right)}\label{eq:tangent_vec2}
+    \end{equation}\vfill
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{切向量求法·情形三}
+
+    \begin{center}
+        \fbox{\textbf{$L$是两个曲面$F(x,y,z)=0,\ G(x,y,z)=0$的交线}}
+    \end{center}\vfill\pause
+
+    从$F$和$G$这个两个曲面方程中，必然存在$y$和$z$分别关于$x$的隐函数。设隐函数$y=y(x),\ z=z(x)$，切向量的形式仍然为$\boldsymbol{\tau} = \pm\left(1,y^\prime(x_0),z^\prime(x_0)\right)$。\pause
+
+    求出$y$和$z$这两个隐函数关于$x$的导数，即对$F(x,y,z)=0$和$G(x,y,z)=0$两个方程关于$x$求导得到\pause
+    \begin{equation}
+        \begin{cases}
+            F_x+F_yy^\prime+F_zz^\prime = 0 \\
+            G_x+G_yy^\prime+G_zz^\prime = 0
+        \end{cases}\Rightarrow%
+        \begin{cases}
+            F_yy^\prime+F_zz^\prime = -F_x \\
+            G_yy^\prime+G_zz^\prime = -G_x
+        \end{cases}\label{eq:hid_eq_der}
+    \end{equation}\vfill
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{切向量求法·情形三}
+
+    根据线性代数多元一次方程组的克拉默法则知识进行求解得到\pause
+    \begin{equation}
+        y^\prime%
+        =\frac{\begin{vmatrix}-F_x&F_z\\-G_x&G_z\end{vmatrix}}{\begin{vmatrix}F_y&F_z\\G_y&G_z\end{vmatrix}}%
+        =\frac{\begin{vmatrix}F_z&F_x\\G_z&G_x\end{vmatrix}}{\begin{vmatrix}F_y&F_z\\G_y&G_z\end{vmatrix}}%
+        =\frac{\frac{\partial(F,G)}{\partial(z,x)}}{\frac{\partial(F,G)}{\partial(y,z)}}%
+        \label{eq:hid_eq_der_solve_y}
+    \end{equation}\pause
+    \begin{equation}
+        z^\prime%
+        =\frac{\begin{vmatrix}F_y&-F_x\\G_y&-G_x\end{vmatrix}}{\begin{vmatrix}F_y&F_z\\G_y&G_z\end{vmatrix}}%
+        =\frac{\begin{vmatrix}F_x&F_y\\G_x&G_y\end{vmatrix}}{\begin{vmatrix}F_y&F_z\\G_y&G_z\end{vmatrix}}%
+        =\frac{\frac{\partial(F,G)}{\partial(x,y)}}{\frac{\partial(F,G)}{\partial(y,z)}}%
+        \label{eq:hid_eq_der_solve_z}
+    \end{equation}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{切向量求法·情形三}
+
+    所以得到切向量为\pause
+    \begin{equation}
+        \alert{\boldsymbol{\tau}=\pm\left(1,\frac{\frac{\partial(F,G)}{\partial(z,x)}}{\frac{\partial(F,G)}{\partial(y,z)}},\frac{\frac{\partial(F,G)}{\partial(x,y)}}{\frac{\partial(F,G)}{\partial(y,z)}}\right)}%
+        \label{eq:tangent_vec3a}
+    \end{equation}\pause
+    也可以写成其平行向量形式\pause
+    \begin{equation}
+        \alert{\boldsymbol{\tau}=\pm\left(\frac{\partial(F,G)}{\partial(y,z)},\frac{\partial(F,G)}{\partial(z,x)},\frac{\partial(F,G)}{\partial(x,y)}\right)}%
+        \label{eq:tangent_vec3b}
+    \end{equation}
+
+\end{frame}
+
+\subsection{切线}
+\begin{frame}
+    \frametitle{切线}
+
+    三种情形均可得到某点处切向量为$\boldsymbol{\tau}(x_0,y_0,z_0)\triangleq\pm(A,B,C)$\pause
+
+    根据切向量得出切线方程为\pause
+    \begin{equation}
+        \alert{\frac{x-x_0}{A}=\frac{y-y_0}{B}=\frac{z-z_0}{C}}%
+        \label{eq:tangent_line}
+    \end{equation}\pause
+    上述方程为三维空间直线的\alert{点向式}（\alert{对称式}）方程。
+
+\end{frame}
+
+\subsection{法平面}
+\begin{frame}
+    \frametitle{法平面}
+
+    $P$是切点。设点$P_1(x,y,z)$为法平面上一点，则向量$\overrightarrow{P_1P}$必然与切向量垂直。\pause
+    \begin{equation}
+        \alert{A(x−x_0)+B(y-y_0)+C(z-z_0)=0}%
+        \label{eq:normal_plane}
+    \end{equation}\pause
+    满足(\ref{eq:normal_plane})的$(x,y,z)$必然在法平面上。
+
+\end{frame}
+
+\subsection{习题}
+\begin{frame}
+    \frametitle{习题一}
+
+    求下列曲线在所示点处的切线方程和法平面方程：
+    $$
+        x=a\sin^2t,\ y=b\sin t\cos t,\ z=c\cos^2t,\ \text{在点}t=\frac{\pi}{4}
+    $$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题一·解答}
+
+    $t=\frac{\pi}{4}$，对应的点为$\left(\frac{a}{2},\frac{b}{2},\frac{c}{2}\right)$。\pause
+    
+    因而可以计算得到\pause
+    \begin{gather*}
+        x^\prime\left(\frac{\pi}{4}\right)=\left.2a\sin t\cos t\right|_{t=\frac{\pi}{4}}=a\\
+        y^\prime\left(\frac{\pi}{4}\right)=\left.b\left(\cos^2t-\sin^2t\right)\right|_{t=\frac{\pi}{4}}=0\\
+        z^\prime\left(\frac{\pi}{4}\right)=\left.-2c\sin t\cos t\right|_{t=\frac{\pi}{4}}=-c
+    \end{gather*}\pause
+    代入(\ref{eq:tangent_vec1})和(\ref{eq:tangent_line})得到切线方程为
+    $$\frac{x-\frac{a}{2}}{a}=\frac{y-\frac{b}{2}}{0}=\frac{z-\frac{c}{2}}{-c}$$\pause
+    代入(\ref{eq:normal_plane})得到法平面方程为
+    $$ax-cz=\frac{1}{2}(a^2-c^2)$$
+    \qed
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题二}
+
+    求下列曲线在所示点处的切线方程和法平面方程：
+    $$
+        2x^2+3y^2+z^2=9,\ z^2=3x^2+y^2,\ \text{在点}(1,-1,2)
+    $$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题二·解答}
+
+    令$F(x,y,z)=2x^2+3y^2+z^2-9,\ G(x,y,z)=3x^2+y^2-z^2$，这时曲线方程为
+    $$\begin{cases}
+        F(x,y,z)=0\\
+        G(x,y,z)=0
+    \end{cases}$$\pause
+    由%
+    $\left(\begin{smallmatrix}
+        F_x & F_y & F_z\\
+        G_x & G_y & G_z
+    \end{smallmatrix}\right)=\left(\begin{smallmatrix}
+        4x & 6y & 2z\\
+        6x & 2y & -2z
+    \end{smallmatrix}\right)$知\pause
+    \begin{gather*}
+        \frac{\partial(F,G)}{\partial(y,z)}=\begin{vmatrix}6y&2z\\2y&-2z\end{vmatrix}=-16yz\\
+        \frac{\partial(F,G)}{\partial(z,x)}=\begin{vmatrix}2z&4x\\-2z&6x\end{vmatrix}=20xz\\
+        \frac{\partial(F,G)}{\partial(x,y)}=\begin{vmatrix}4x&6y\\6x&2y\end{vmatrix}=-28xy
+    \end{gather*}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题二·解答}
+
+    代入(\ref{eq:tangent_vec3b})得到切向量为
+    $$\boldsymbol{\tau}=\left.(-16yz,20xz,-28xy)\right|_{(1,-1,2)}=4\cdot(8,10,7)$$\pause
+    代入(\ref{eq:tangent_line})得到切线方程为
+    $$\frac{x-1}{8}=\frac{y+1}{10}=\frac{z-2}{7}$$\pause
+    代入(\ref{eq:normal_plane})并整理得到法平面方程为
+    $$8x+10y+7z=12$$
+    \qed
+
+\end{frame}

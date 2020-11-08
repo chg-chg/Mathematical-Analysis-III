@@ -1,0 +1,77 @@
+% taylor
+% 泰勒公式
+\section{泰勒公式}
+\subsection{定义}
+\begin{frame}
+    \frametitle{定义}
+
+    设$f(x,y)$在$P_0(x_0,y_0)$的某邻域内有直到$n+1$阶的连续偏导数，则对于$O(P_0)$内的任意一点$(x_0+\Delta x,y_0+\Delta y)$，存在$\theta$使下式成立\pause
+    \begin{equation}
+        f(x_0+\Delta x,y_0+\Delta y)=\sum_{k=0}^{n}\frac{1}{k!}\left(\frac{\partial}{\partial x}\Delta x+\frac{\partial}{\partial y}\Delta y\right)^kf(x_0,y_0)+R_n%
+        \label{eq:taylor1}
+    \end{equation}
+    \begin{equation}
+        R_n=\frac{1}{(n+1)!}\left(\frac{\partial}{\partial x}\Delta x+\frac{\partial}{\partial y}\Delta y\right)^{n+1}f(x_0+\theta\Delta x,y_0+\theta\Delta y)%
+        \label{eq:taylor2}
+    \end{equation}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{泰勒展开式}
+
+    借助$n=0,1,2$时的泰勒展开式希望有助于记忆。
+    \begin{align}
+        &f(x_0+\Delta x,y_0+\Delta y)\\
+        \uncover<2->{\approx &f(x_0,y_0)\\}
+        \uncover<3->{\approx &f(x_0,y_0)+f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta y\label{eq:taylorappr2}\\}
+        \uncover<4->{\begin{split}
+        \approx &f(x_0,y_0)+f_x(x_0,y_0)\Delta x+f_y(x_0,y_0)\Delta y+ \\ &\frac{1}{2}\left\{f_{xx}(x_0,y_0)\Delta x^2+2f_{xy}(x_0,y_0)\Delta x\Delta y+f_{yy}(x_0,y_0)\Delta y^2\right\}
+        \end{split}\\}
+        \notag
+    \end{align}\vskip-1.5em
+
+    \onslide<5->其中，(\ref{eq:taylorappr2})正是用函数的微分代替函数的改变量。
+
+\end{frame}
+
+\subsection{习题}
+\begin{frame}
+    \frametitle{习题八}
+
+    写出下列函数在指定点的Taylor公式：
+    $$f(x,y)=2x^2-xy-y^2-6x-3y+5\ \text{在}(1,-2)\text{点}$$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题八·解答}
+
+    计算后可以得到，高于二阶的偏导数均为0。\pause 又有$$\frac{\partial f}{\partial x}=4x-y-6,\ \frac{\partial f}{\partial y}=-x-2y-3,\ \frac{\partial^2 f}{\partial x^2}=4,\ \frac{\partial^2 f}{\partial x\partial y}=-1,\ \frac{\partial^2 f}{\partial y^2}=-2$$\pause
+    代入$(1,-2)$后得到
+    $$\frac{\partial f}{\partial x}=\frac{\partial f}{\partial y}=0,\ \frac{\partial^2 f}{\partial x^2}=4,\ \frac{\partial^2 f}{\partial x\partial y}=-1,\ \frac{\partial^2 f}{\partial y^2}=-2$$\pause
+    所以
+    $$f(x,y)=2(x-1)^2-(x-1)(y+2)-(y+2)^2+5$$
+    \qed
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题九}
+
+    写出下列函数在指定点的Taylor公式：
+    $$f(x,y)=x^2+xy+y^2+3x-2y+4\ \text{在}(-1,1)\text{点}$$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题九·解答}
+
+    计算后可以得到，高于二阶的偏导数均为0。\pause 又有$$\frac{\partial f}{\partial x}=2x+y+3,\ \frac{\partial f}{\partial y}=x+2y-2,\ \frac{\partial^2 f}{\partial x^2}=2,\ \frac{\partial^2 f}{\partial x\partial y}=1,\ \frac{\partial^2 f}{\partial y^2}=2$$\pause
+    代入$(-1,1)$后得到
+    $$\frac{\partial f}{\partial x}=2,\ \frac{\partial f}{\partial y}=-1,\ \frac{\partial^2 f}{\partial x^2}=2,\ \frac{\partial^2 f}{\partial x\partial y}=1,\ \frac{\partial^2 f}{\partial y^2}=2$$\pause
+    所以
+    $$f(x,y)=2(x+1)-(y-1)+(x+1)^2+(x+1)(y-1)+(y-1)^2$$
+    \qed
+
+\end{frame}

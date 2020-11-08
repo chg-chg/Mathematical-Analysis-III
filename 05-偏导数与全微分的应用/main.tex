@@ -1,0 +1,43 @@
+%!TEX TS-program = xelatex
+\documentclass[xetex]{beamer}
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\graphicspath{{img/}}
+
+\usetheme[block=fill]{metropolis}
+
+\setmathfont{XITS Math}
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+
+\title{偏导数与全微分}
+\subtitle{偏导数与全微分的应用}
+\author{数学分析MOOC小组}
+\date{}
+
+%\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+    \frame{\maketitle}
+
+    \input{curve.tex}
+    \input{surface.tex}
+    \input{dirder.tex}
+    \input{taylor.tex}
+
+    \begin{frame}[standout]
+
+        感谢
+
+        \small{偏导数与全微分的应用 · 终}
+    
+    \end{frame}
+\end{document}

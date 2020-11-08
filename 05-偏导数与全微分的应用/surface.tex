@@ -1,0 +1,226 @@
+% surface
+% 空间曲面的切平面和法线
+\section{空间曲面的切平面和法线}
+\subsection{法向量求法}
+\begin{frame}
+    \frametitle{法向量求法}
+
+    曲面方程给出的形式不同，对于法向量的计算也存在不同方法，同样还是三种情况。
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{法向量求法·情形一}
+
+    \begin{center}
+        \fbox{\textbf{$F$的曲面方程为$F(x,y,z)=0$}}
+    \end{center}\vfill\pause
+
+    取$F$上的一点$P(x_0,y_0,z_0)$，再在$F$上任取一条过$P$的曲线$L$，设其方程为$x=x(t),\ y=y(t),\ z=z(t)$，$P$点为$t=t_0$时的取值。此时存在$F\left(x(t),y(t),z(t)\right)=0$。\pause
+
+    根据复合函数求导法则，曲面方程对变量$t$进行求导后令$t=t_0$，得到\pause
+    \begin{equation}
+        F_x(x_0,y_0,z_0)x^\prime(t_0)+F_y(x_0,y_0,z_0)y^\prime(t_0)+F_z(x_0,y_0,z_0)z^\prime(t_0)=0\label{eq:norm_vec_der}
+    \end{equation}\vfill
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{法向量求法·情形一}
+
+    将(\ref{eq:norm_vec_der})写成向量的内积形式\pause
+    \begin{equation}
+        \left(F_x,F_y,F_z\right)_P\cdot \left(x^\prime(t_0),y^\prime(t_0),z^\prime(t_0)\right)=0\label{eq:norm_vec_dot}
+    \end{equation}\pause
+    (\ref{eq:norm_vec_dot})表明$\left(F_x,F_y,F_z\right)_P$与曲面上任意一条过$P$点的曲线在$P$的切线垂直。这些切线组成了曲面在$P$点的\alert{切平面}，切平面的法向量是\pause
+    \begin{equation}
+        \alert{\boldsymbol{n}=\pm\left(F_x,F_y,F_z\right)_P}\label{eq:norm_vec1}
+    \end{equation}\pause
+    也称为曲面在$P$的\alert{法向量}。
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{法向量求法·情形二}
+
+    \begin{center}
+        \fbox{\textbf{$F$的曲面方程为$z=f(x,y)$}}
+    \end{center}\vfill\pause
+
+    移项即可转换成$F: f(x,y)-z=0$，法向量为\pause
+    \begin{equation}
+        \alert{\boldsymbol{n}=\pm\left(f_x,f_y,-1\right)_P}\label{eq:norm_vec2}
+    \end{equation}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{法向量求法·情形三}
+
+    \begin{center}
+        \fbox{\textbf{曲面方程由参数方程定义：$F: \begin{cases}x=x(u,v),\\y=y(u,v),\\z=z(u,v).\end{cases}$}}
+    \end{center}\vfill\pause
+
+    当$(u,v)=(u_0,v_0)$时对应的是曲面上的$P$点。我们此时需要的是找到曲面的$F(x,y,z)=0$形式的方程。仔细观察上述的曲面方程，取前两项，必存在以下的隐函数对\pause
+    \begin{equation}
+        \begin{cases}
+            u=u(x,y)\\
+            v=v(x,y)
+        \end{cases}\label{eq:hid_func_pair}
+    \end{equation}\pause
+    则对于$z=z(u,v)$可以写作$z=z\left(u(x,y),v(x,y)\right)\triangleq f(x,y)$。
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{法向量求法·情形三}
+
+    这样便转化为情形二，待求的法向量为\pause
+    \begin{equation}
+        \alert{\boldsymbol{n}=\pm\left(\frac{\partial z}{\partial x},\frac{\partial z}{\partial y},-1\right)_P}\label{eq:norm_vec3a}
+    \end{equation}\pause
+
+    接下来的任务便是求出$\displaystyle\frac{\partial z}{\partial x}$和$\displaystyle\frac{\partial z}{\partial y}$。
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{法向量求法·情形三}
+
+    根据隐函数求导法，得\pause
+    \begin{equation}
+        \begin{cases}
+            \frac{\partial z}{\partial u}=\frac{\partial z}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial z}{\partial y}\frac{\partial y}{\partial u}\\
+            \frac{\partial z}{\partial v}=\frac{\partial z}{\partial x}\frac{\partial x}{\partial v}+\frac{\partial z}{\partial y}\frac{\partial y}{\partial v}
+        \end{cases}\label{eq:hid_func_der}
+    \end{equation}\pause
+    当雅可比行列式$\displaystyle\frac{\partial(x,y)}{\partial(u,v)}\neq 0$时，可以由克拉默法则解得\pause
+    \begin{equation}
+        \frac{\partial z}{\partial x}=-\frac{\frac{\partial(y,z)}{\partial(u,v)}}{\frac{\partial(x,y)}{\partial(u,v)}}%
+        \quad%
+        \frac{\partial z}{\partial y}=-\frac{\frac{\partial(z,x)}{\partial(u,v)}}{\frac{\partial(x,y)}{\partial(u,v)}}
+        \label{eq:hid_func_der_sol}
+    \end{equation}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{法向量求法·情形三}
+
+    故(\ref{eq:norm_vec3a})可以写成\pause
+    \begin{equation}
+        \alert{\boldsymbol{n}=\pm\left(\frac{\partial(y,z)}{\partial(u,v)},\frac{\partial(z,x)}{\partial(u,v)},\frac{\partial(x,y)}{\partial(u,v)}\right)_P}\label{eq:norm_vec3b}
+    \end{equation}
+
+\end{frame}
+
+\subsection{法线}
+\begin{frame}
+    \frametitle{法线}
+
+    三种情形均可得到某点处法向量为$\boldsymbol{n}(x_0,y_0,z_0)\triangleq\pm(A^\prime,B^\prime,C^\prime)$\pause
+
+    根据法向量得出法线方程为\pause
+    \begin{equation}
+        \alert{\frac{x-x_0}{A^\prime}=\frac{y-y_0}{B^\prime}=\frac{z-z_0}{C^\prime}}%
+        \label{eq:normal_line}
+    \end{equation}\pause
+    上述方程为三维空间直线的点向式（对称式）方程。
+
+\end{frame}
+
+\subsection{切平面}
+\begin{frame}
+    \frametitle{切平面}
+
+    $P$是切点。设点$P_1(x,y,z)$为切平面上一点，则向量$\overrightarrow{P_1P}$必然与法向量垂直。\pause
+    \begin{equation}
+        \alert{A^\prime(x−x_0)+B^\prime(y-y_0)+C^\prime(z-z_0)=0}%
+        \label{eq:tangent_plane}
+    \end{equation}\pause
+    满足(\ref{eq:tangent_plane})的$(x,y,z)$必然在切平面上。
+
+\end{frame}
+
+\subsection{习题}
+\begin{frame}
+    \frametitle{习题三}
+
+    求下列曲面在所示点处的切平面方程和法线方程：
+    $$\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1,\ \text{在点}P\left(\frac{a}{\sqrt{3}},\frac{b}{\sqrt{3}},\frac{c}{\sqrt{3}}\right)$$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题三·解答}
+
+    令$F(x,y,z)=\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}-1$，代入(\ref{eq:norm_vec1})就有法向量
+    $$\boldsymbol{n}=\left(F_x,F_y,F_z\right)_{P}=\frac{2}{\sqrt{3}}\cdot\left(\frac{1}{a},\frac{1}{b},\frac{1}{c}\right)$$\pause
+    代入(\ref{eq:tangent_plane})整理得到切平面方程
+    $$\frac{x}{a}+\frac{y}{b}+\frac{z}{c}=\sqrt{3}$$\pause
+    代入(\ref{eq:normal_line})整理得到法线方程为
+    $$\frac{x-\frac{a}{\sqrt{3}}}{\frac{1}{a}}=\frac{y-\frac{b}{\sqrt{3}}}{\frac{1}{b}}=\frac{z-\frac{c}{\sqrt{3}}}{\frac{1}{c}}$$
+    \qed
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题四}
+
+    求下列曲面在所示点处的切平面方程和法线方程：
+    $$z=2x^2+4y^2,\ \text{在点}(2,1,12)$$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题四·解答}
+
+    直接代入(\ref{eq:norm_vec2})（转化为情形一之后代入(\ref{eq:norm_vec1})也可以）就能得到法向量
+    $$\boldsymbol{n}=\left.\left(4x,8y,-1\right)\right|_{(2,1,12)}=(8,8,-1)$$\pause
+    代入(\ref{eq:tangent_plane})整理得到切平面方程
+    $$8x+8y-z=12$$\pause
+    代入(\ref{eq:normal_line})整理得到法线方程为
+    $$\frac{x-2}{8}=\frac{y-1}{8}=\frac{z-12}{-1}$$
+    \qed
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题五}
+
+    求下列曲面在所示点处的切平面方程和法线方程：
+    $$x=u\cos v,\ y=u\sin v,\ z=av,\ \text{在点}P_0(u_0,v_0)$$
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题五·解答}
+
+    由%
+    $\left(\begin{smallmatrix}
+        \frac{\partial x}{\partial u} & \frac{\partial y}{\partial u} & \frac{\partial z}{\partial u} \\
+        \frac{\partial x}{\partial v} & \frac{\partial y}{\partial v} & \frac{\partial z}{\partial v}
+    \end{smallmatrix}\right)=\left(\begin{smallmatrix}
+        \cos v & \sin v & 0 \\
+        -u \sin v & u \cos v & a
+    \end{smallmatrix}\right)$，知\pause
+    \begin{gather*}
+        \left.\frac{\partial(y,z)}{\partial(u,v)}\right|_{P_0}=\begin{vmatrix}\sin v&0\\u\cos v&a\end{vmatrix}_{P_0}=a\sin v_0\\
+        \left.\frac{\partial(z,x)}{\partial(u,v)}\right|_{P_0}=\begin{vmatrix}0&\cos v\\a&-u\sin v\end{vmatrix}_{P_0}=-a\cos v_0\\
+        \left.\frac{\partial(x,y)}{\partial(u,v)}\right|_{P_0}=\begin{vmatrix}\cos v&\sin v\\-u\sin v&u\cos v\end{vmatrix}_{P_0}=u_0\\
+    \end{gather*}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题五·解答}
+
+    代入(\ref{eq:norm_vec3b})得到法向量
+    $$\boldsymbol{n}=\left(a\sin v_0,-a\cos v_0,u_0\right)$$\pause
+    又因为$P_0$对应的点为$\left(u_0\cos v_0,u_0\sin v_0,av_0\right)$，代入(\ref{eq:tangent_plane})整理得到切平面方程
+    $$ax\sin v_0-ay\sin v_0+u_0z=au_0v_0$$\pause
+    代入(\ref{eq:normal_line})整理得到法线方程为
+    $$\frac{x-u_0\cos v_0}{a\sin v_0}=\frac{y-u_0\sin v_0}{-a\cos v_0}=\frac{z-av_0}{u_0}$$
+    \qed
+
+\end{frame}

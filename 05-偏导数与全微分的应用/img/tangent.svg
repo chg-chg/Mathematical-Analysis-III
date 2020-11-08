@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="177.80554mm"
+   height="180.3399mm"
+   viewBox="0 0 177.80554 180.3399"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="drawing.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1680"
+     inkscape:window-height="988"
+     id="namedview18"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.65477694"
+     inkscape:cx="340.39945"
+     inkscape:cy="516.61611"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(-14.93598,-11.811987)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.64753;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 16.259745,173.76785 c 0,0 42.03563,5.73826 73.261059,-12.26202 C 170.34447,114.91402 131.21419,13.135752 131.21419,13.135752"
+       id="path16" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.75122px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 39.810569,191.39312 183.89506,108.40979"
+       id="path20" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.75122px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 91.693086,161.00949 154.29682,50.978604"
+       id="path22" />
+    <circle
+       style="stroke-width:1.14006;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path849"
+       cx="92.682724"
+       cy="160.03433"
+       r="2.6835067" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="26.044888"
+       y="167.13731"
+       id="text853"><tspan
+         id="tspan851"
+         x="26.044888"
+         y="167.13731"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583">$L$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="97.922028"
+       y="171.31656"
+       id="text857"><tspan
+         id="tspan855"
+         x="97.922028"
+         y="171.31656"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583">$P$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="183.4863"
+       y="122.50936"
+       id="text861"><tspan
+         id="tspan859"
+         x="183.4863"
+         y="122.50936"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583">$T$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="130.66994"
+       y="75.667549"
+       id="text865"><tspan
+         id="tspan863"
+         x="130.66994"
+         y="75.667549"
+         style="text-align:center;text-anchor:middle;stroke-width:0.264583">$Q$</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,127 @@
+% directional derivative
+% 方向导数
+\section{方向导数}
+\subsection{定义与求法}
+\begin{frame}
+    \frametitle{定义}
+
+    \begin{wrapfigure}{r}{.45\linewidth}
+        \centering
+        \def\svgwidth{.7\columnwidth}
+        \vspace{-20pt}
+        \scalebox{.4}{\input{img/dirder.eps_tex}}
+        \vspace{-5pt}
+        \caption{空间向量$\boldsymbol{l}$\label{fig:dirder}}
+        \vspace{-40pt}
+    \end{wrapfigure}
+
+    \vfill
+    设函数$f(x,y,z)$在$P_0(x_0,y_0,z_0)$的邻域内有定义，任意给定始于$P_0$的射线$\boldsymbol{l}$，$P(x,y,z)$为$P$邻域内射线$\boldsymbol{l}$上的点。\pause
+    \vspace{20pt}
+
+    若极限
+    \begin{equation}
+        \lim_{r(P,P_0)\to 0^{+}}\frac{f(P)-f(P_0)}{r(P,P_0)} = \lim_{r(P,P_0)\to 0^{+}}\frac{\Delta_{\boldsymbol{l}}f(P_0)}{r(P,P_0)}\label{eq:dirder_def}
+    \end{equation}
+    存在，则称其为函数$f$在$P_0$处沿射线$\boldsymbol{l}$的\alert{方向导数}，记为$\displaystyle\left.\frac{\partial f}{\partial \boldsymbol{l}}\right|_{P_0}$。$\Delta_{\boldsymbol{l}}f(P_0)$称为函数在$P_0$处沿射线 $\boldsymbol{l}$的\alert{方向增量}。
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{计算}
+
+    若射线$\boldsymbol{l}$的方向余弦为$\boldsymbol{l}_0=(\cos\alpha,\cos\beta,\cos\gamma)$，$P$为$(x+\Delta x,y+\Delta y,z+\Delta z)$。可以看成方向导数总可以分解为三个分别沿着$x$，$y$，$z$坐标轴方向的分量。它们满足以下关系\pause
+    \begin{equation}
+        \frac{\Delta x}{\cos\alpha}=\frac{\Delta y}{\cos\beta}=\frac{\Delta z}{\cos\gamma}\label{eq:dirder_subdir}
+    \end{equation}\pause
+    或者
+    \begin{equation}
+        \boldsymbol{l}_0=\frac{1}{\rho}(\Delta x,\Delta y,\Delta z),\quad \rho=\sqrt{(\Delta x)^2+(\Delta y)^2+(\Delta z)^2}\label{eq:dirder_subdir2}
+    \end{equation}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{计算}
+
+    若函数$f$在$P_0$可微，则有方向导数计算公式\pause
+    \begin{equation}
+        \alert{\frac{\partial f(P_0)}{\partial \boldsymbol{l}}=\frac{\partial f(P_0)}{\partial x}\cos\alpha+\frac{\partial f(P_0)}{\partial y}\cos\beta+\frac{\partial f(P_0)}{\partial z}\cos\gamma}\label{eq:dirder}
+    \end{equation}\pause
+    (\ref{eq:dirder})又可以表示为\pause
+    \begin{equation}
+        \alert{\frac{\partial f(P_0)}{\partial \boldsymbol{l}}=\left.\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\right|_{P_0}\cdot\left(\cos\alpha,\cos\beta,\cos\gamma\right)}\label{eq:dirder2}
+    \end{equation}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{方向向量与梯度}
+
+    (\ref{eq:dirder2})可以继续改写为\pause
+    \begin{align}
+        \uncover<2->{\frac{\partial f(P_0)}{\partial \boldsymbol{l}}&=%
+        \left|\left(\frac{\partial f(P_0)}{\partial x},\frac{\partial f(P_0)}{\partial y},\frac{\partial f(P_0)}{\partial z}\right)\right|\left|\left(\cos\alpha,\cos\beta,\cos\gamma\right)\right|\cos\theta \\}
+        \uncover<3->{&=\sqrt{\left(\frac{\partial f(P_0)}{\partial x}\right)^2+\left(\frac{\partial f(P_0)}{\partial y}\right)^2+\left(\frac{\partial f(P_0)}{\partial z}\right)^2}\cos\theta \\}%
+        \label{eq:dirder3}
+        \notag
+    \end{align}\vskip-1.5em
+    \onslide<4->其中，$\cos\theta$是向量$\displaystyle\left(\frac{\partial f(P_0)}{\partial x},\frac{\partial f(P_0)}{\partial y},\frac{\partial f(P_0)}{\partial z}\right)$和$\left(\cos\alpha,\cos\beta,\cos\gamma\right)$之间的夹角。
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{方向向量与梯度}
+
+    前者被称为$f$在$P_0$的梯度向量，是方向和长度都是确定的；后者的长度固定为1，但方向是可变的。从(\ref{eq:dirder3})当中可以得知，当$\cos\theta=\pm 1$的时候(\ref{eq:dirder3})能够取到最值。此时方向向量与梯度向量共线。\pause
+
+    \vfill
+
+    \begin{center}
+        \textbf{「函数在某点处的梯度方向是其值变化最快的方向」}
+    \end{center}\vfill
+
+\end{frame}
+
+\subsection{习题}
+\begin{frame}
+    \frametitle{习题六}
+
+    设$f(x,y,z)=x+y^2+z^3$，求$f$在点$P_0(1,1,1)$沿方向$\boldsymbol{l}=(2,-2,1)$的方向导数。
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题六·解答}
+
+    由于$\displaystyle\frac{\partial f}{\partial x}=1,\ \frac{\partial f}{\partial y}=2y,\ \frac{\partial f}{\partial z}=3z^2$，故有\pause
+    \begin{gather*}
+        \left.\left(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}\right)\right|_{P_0}=(1,2,3)\\
+        \boldsymbol{l}_0=\frac{\boldsymbol{l}}{|\boldsymbol{l}|}=\left(\frac{2}{3},-\frac{2}{3},\frac{1}{3}\right)
+    \end{gather*}\pause
+    所以
+    $$\left.\frac{\partial f}{\partial \boldsymbol{l}}\right|_{P_0}=(1,2,3)\cdot \left(\frac{2}{3},-\frac{2}{3},\frac{1}{3}\right)=\frac{1}{3}$$
+    \qed
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题七}
+
+    求函数$u=xyz$在点$A(5,1,2)$处沿点$B(9,4,14)$的方向$\overrightarrow{AB}$上的方向导数。
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{习题七·解答}
+
+    $\displaystyle\frac{\partial u}{\partial x}=yz,\ \frac{\partial u}{\partial y}=xz,\ \frac{\partial u}{\partial z}=xy$，故有\pause
+    \begin{gather*}
+        \left.\left(\frac{\partial u}{\partial x},\frac{\partial u}{\partial y},\frac{\partial u}{\partial z}\right)\right|_{A}=(2,10,5)\\
+        \boldsymbol{l}_0=\frac{\overrightarrow{AB}}{|\overrightarrow{AB}|}=\left(\frac{4}{13},\frac{3}{13},\frac{12}{13}\right)
+    \end{gather*}\pause
+    所以
+    $$\left.\frac{\partial u}{\partial \overrightarrow{AB}}\right|_{A}=(2,10,5)\cdot \left(\frac{4}{13},\frac{3}{13},\frac{12}{13}\right)=\frac{98}{13}$$
+    \qed
+
+\end{frame}
