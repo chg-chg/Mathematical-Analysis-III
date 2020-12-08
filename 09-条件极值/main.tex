@@ -1,0 +1,46 @@
+%!TEX TS-program = xelatex
+\documentclass[xetex]{beamer}
+
+\usefonttheme{professionalfonts}
+
+\usepackage[UTF8]{ctex}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, wrapfig}
+
+\usepackage{nopageno}
+
+\graphicspath{{img/}}
+
+\usetheme[block=fill]{metropolis}
+
+\setmathfont{XITS Math}
+\renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
+
+\title{极值与条件极值}
+\subtitle{条件极值}
+\author{数学分析MOOC小组}
+\date{}
+
+%\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+    \frame{\maketitle}
+
+    \section{概述}
+    \input{overview.tex}
+    \section{拉格朗日乘数法}
+    \input{lagrange.tex}
+    \section{例题}
+    \input{example1.tex}
+    \input{example2.tex}
+
+    \begin{frame}[standout]
+
+        感谢
+
+        \small{条件极值 · 终}
+    
+    \end{frame}
+\end{document}
